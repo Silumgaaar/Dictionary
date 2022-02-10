@@ -10,5 +10,6 @@ interface DictionaryManager {
     public Map dictionarySaving(File file) throws IOException;
     public String searchInDictionary(HashMap<String, String> dictionary, String key);
     public HashMap removeInDictionary(HashMap<String, String> dictionary, String key);
+    public boolean checkAddDictionary(String[] rules, String newKey, String newMeaning);
 
 }
