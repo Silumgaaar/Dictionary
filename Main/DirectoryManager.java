@@ -1,3 +1,4 @@
+package Main;
 import java.util.List;
 
 public interface DirectoryManager {
@@ -6,4 +7,4 @@ public interface DirectoryManager {
     public List<String> getListFile();
     public boolean checkFile(String nameFile);
     public int getPosition(String nameFile);
-}
+} 

@@ -1,3 +1,4 @@
+package Main;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +7,7 @@ import java.util.Objects;
 public class Directory implements DirectoryManager {
     public static final String REGULAR_EXPRESSION = "RegularExpression.txt";
 
-    private String directory = "../resource";
+    private String directory = "../resources";
     private List<String> fileList = new ArrayList<>();
     private int position = 0;
 
@@ -47,7 +48,6 @@ public class Directory implements DirectoryManager {
     }
     private void searchPositionFile(String nameFile){
         position = 0;
-        System.out.print(nameFile);
         for(String str : fileList){
             if(nameFile.equals(str)){
                 break;
@@ -56,4 +56,4 @@ public class Directory implements DirectoryManager {
         }
     }
 
-}
+} 

@@ -1,3 +1,4 @@
+package Main;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -9,4 +10,4 @@ public interface DocumentManager {
     public String[] getRules(int position) throws IOException;
     public void addInFile(String newKey, String newMeaning) throws IOException;
     public void fileOverWrite(HashMap<String, String> newDictionary) throws IOException;
-}
+} 

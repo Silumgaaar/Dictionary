@@ -1,3 +1,4 @@
+package Main;
 import java.io.IOException;
 
 public class Main {
@@ -8,4 +9,4 @@ public class Main {
         Console control = new Console(directory,document,dictionary);
         control.start();
     }
-}
+} 

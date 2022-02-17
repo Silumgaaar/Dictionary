@@ -1,8 +1,10 @@
+package Main;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Map;
 
 public class Console {
     public static final String NEXT_LINE = "\n";
@@ -70,41 +72,49 @@ public class Console {
                 System.out.print(FILE_NOT_FOUND + NEXT_LINE);
                 continue;
             }
-            System.out.print(dictionarySelected + NEXT_LINE);
+			commandView();
+            //System.out.print(dictionarySelected + NEXT_LINE);
             System.out.print(MENU + NEXT_LINE);
-
-            while (!exitMenu) {
-                switch (input()) {
-                    case (COMMAND_ADD):
-                        commandAdd();
-                        break;
-                    case (COMMAND_DEL):
-                        commandDel();
-                        break;
-                    case (COMMAND_SEARCH):
-                        commandSearch();
-                        break;
-                    case (COMMAND_VIEW):
-                        commandView();
-                        break;
-                    case (COMMAND_BACK):
-                        commandBack();
-                        break;
-                    default:
-                        System.out.println(COMMAND_NOT_FOUND);
-                }
-            }
+			menu();
+            
         }
     }
+	
+	private void menu() throws IOException {
+		while (!exitMenu) {
+            switch (input()) {
+                case (COMMAND_ADD):
+                    commandAdd();
+                    break;
+                case (COMMAND_DEL):
+                    commandDel();
+					break;
+				case (COMMAND_SEARCH):
+					commandSearch();
+					break;
+				case (COMMAND_VIEW):
+					commandView();
+					break;
+				case (COMMAND_BACK):
+					commandBack();
+					break;
+				default:
+					System.out.println(COMMAND_NOT_FOUND);
+           }
+       }
+	}
     private String input(){
         Scanner str = new Scanner(System.in);
         String inp = str.nextLine();
         return inp;
     }
     private void viewListFile(){
-        for (String l : files) {
-            System.out.println(l);
+		String[] str = new String[2];
+        for (String l : files){
+		   str = l.split("\\.");
+           System.out.println(str[0]);
         }
+		
     }
     private void chooseFile() throws IOException {
         Scanner str = new Scanner(System.in);
@@ -149,9 +159,14 @@ public class Console {
 
     }
     private  void commandView(){
-        System.out.println(dictionarySelected);
+        //System.out.println(dictionarySelected);
+		for (Map.Entry entry: dictionarySelected.entrySet()) {
+
+		System.out.print(entry + NEXT_LINE);
+
+}
     }
     private  void commandBack(){
         exitMenu = true;
     }
-}
+} 

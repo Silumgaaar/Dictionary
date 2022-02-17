@@ -1,3 +1,4 @@
+package Main;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -69,7 +70,6 @@ public class Document implements DocumentManager {
     }
 
     private void infoDictionary(int position) throws IOException {
-        System.out.print(position);
         String strInfoDictionary = Files.readAllLines(Paths.get(directory + SLASH + REGULAR_EXPRESSION)).get(position);
         infoDictionary = strInfoDictionary.split(DELIMITER);
     }
@@ -79,4 +79,4 @@ public class Document implements DocumentManager {
 
 
 
-}
+} 
