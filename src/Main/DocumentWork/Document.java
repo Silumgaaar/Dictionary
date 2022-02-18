@@ -1,4 +1,4 @@
-package Main;
+package Main.DocumentWork;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;

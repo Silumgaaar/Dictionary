@@ -1,4 +1,4 @@
-package Main;
+package Main.DocumentWork;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;

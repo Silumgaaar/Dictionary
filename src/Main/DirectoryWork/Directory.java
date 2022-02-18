@@ -1,4 +1,4 @@
-package Main;
+package Main.DirectoryWork;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import java.util.Objects;
 public class Directory implements DirectoryManager {
     public static final String REGULAR_EXPRESSION = "RegularExpression.txt";
 
-    private String directory = "../resources";
+    private String directory = "../resources/";
     private List<String> fileList = new ArrayList<>();
     private int position = 0;
 
@@ -40,6 +40,7 @@ public class Directory implements DirectoryManager {
     }
     private void searchListFileInDirectory(){
         fileList.clear();
+		System.out.println(this.directory);
         for(File file : Objects.requireNonNull(searchDirectory().listFiles())){
             if(!(REGULAR_EXPRESSION.equals(file.getName()))){
                 fileList.add(file.getName());

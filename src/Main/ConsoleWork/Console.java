@@ -1,5 +1,10 @@
-package Main;
+package Main.ConsoleWork;
+import Main.DictionaryWork.*;
+import Main.DirectoryWork.*;
+import Main.DocumentWork.*;
+
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -105,6 +110,7 @@ public class Console {
 	}
     private String input(){
         Scanner str = new Scanner(System.in);
+		
         String inp = str.nextLine();
         return inp;
     }
@@ -118,6 +124,7 @@ public class Console {
     }
     private void chooseFile() throws IOException {
         Scanner str = new Scanner(System.in);
+		
         nameFile = str.nextLine();
     }
     private void commandAdd() throws IOException {
@@ -159,7 +166,6 @@ public class Console {
 
     }
     private  void commandView(){
-        //System.out.println(dictionarySelected);
 		for (Map.Entry entry: dictionarySelected.entrySet()) {
 
 		System.out.print(entry + NEXT_LINE);

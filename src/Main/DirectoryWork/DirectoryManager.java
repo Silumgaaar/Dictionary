@@ -1,4 +1,4 @@
-package Main;
+package Main.DirectoryWork;
 import java.util.List;
 
 public interface DirectoryManager {

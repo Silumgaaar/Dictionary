@@ -1,4 +1,10 @@
 package Main;
+
+import Main.ConsoleWork.*;
+import Main.DictionaryWork.*;
+import Main.DirectoryWork.*;
+import Main.DocumentWork.*;
+
 import java.io.IOException;
 
 public class Main {
