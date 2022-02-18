@@ -1,4 +1,4 @@
-package Main.DictionaryWork;
+package main.dictionarywork;
 import java.util.HashMap;
 
 public interface DictionaryManager {

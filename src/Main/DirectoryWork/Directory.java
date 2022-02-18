@@ -1,4 +1,4 @@
-package Main.DirectoryWork;
+package main.directorywork;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;

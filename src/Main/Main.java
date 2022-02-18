@@ -1,9 +1,9 @@
-package Main;
+package main;
 
-import Main.ConsoleWork.*;
-import Main.DictionaryWork.*;
-import Main.DirectoryWork.*;
-import Main.DocumentWork.*;
+import main.consolework.*;
+import main.dictionarywork.*;
+import main.directorywork.*;
+import main.documentwork.*;
 
 import java.io.IOException;
 
