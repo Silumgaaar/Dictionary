@@ -1,2 +1,0 @@
-^[A-Za-z]{4}$,^[а-яёА-ЯЁ]{4}$,English-Russian dictionary
-[0-9]{5},[а-яёА-ЯЁ]{5},Digital-Russian dictionary
