@@ -1,9 +1,9 @@
 package main.dictionarywork;
+
 import java.util.HashMap;
 
 public interface DictionaryManager {
-    public boolean checkAddDictionary(String[] rules, String newKey, String newMeaning);
-    public HashMap<String, String> addInDictionary(HashMap<String, String> dictionarySelected, String newKey, String newMeaning);
-    public HashMap<String, String> removeInDictionary(HashMap<String, String> dictionarySelected, String strDel);
-    public String searchInDictionary(HashMap<String, String> dictionary, String key);
-} 
+    public String search(HashMap<String,String> dictionarySelected,String key);
+    public HashMap<String,String> add(HashMap<String,String> dictionarySelected , String newKey, String newMeaning, String[] info);
+    public HashMap<String,String> remove(HashMap<String,String> dictionarySelected, String strDel);
+}
