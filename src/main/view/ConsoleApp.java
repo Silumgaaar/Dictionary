@@ -45,6 +45,7 @@ public class ConsoleApp {
                 workWitchDictionary(dictionarySelected);
             } catch (IOException e){
                 e.printStackTrace();
+                exitProgram = true;
             }
         }
     }
