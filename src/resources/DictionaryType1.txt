@@ -1,3 +1,4 @@
+qpow-прив
 blee-кров
 qwer-йцук
 bend-накл
@@ -6,5 +7,3 @@ zxcv-ячсм
 beth-закл
 asdf-фыва
 bear-пере
-befd-быть
-asdd-йцук

@@ -1,115 +1,82 @@
 package main.view;
 
+
+import main.dictionarywork.Dictionary;
 import main.dictionarywork.DictionaryManager;
-import main.documentswork.DocumentsManager;
+import main.view.commands.Commands;
+import main.view.commands.Start;
+import main.view.commands.View;
 
 
-import java.io.IOException;
-import java.util.*;
-
+import java.util.List;
 
 public class ConsoleApp {
+    List<Commands> listCommand;
 
-    private final DocumentsManager documents;
-    private final DictionaryManager dictionary;
-    private String nameFile;
-    public ConsoleApp(DocumentsManager documents, DictionaryManager dictionary){
-        this.documents = documents;
-        this.dictionary = dictionary;
+    public ConsoleApp(List<Commands> listCommand){
+        this.listCommand = listCommand;
     }
-    public void work(){
-        mainMenu();
-    }
-    private void mainMenu(){
+    public void start(){
+        String userChoice;
+        List<String>  nameFiles;
         boolean exitProgram = false;
-        while (!exitProgram){
-            try {
-                viewList(documents.getFileNames());
-                System.out.println(ConsoleConstants.EXIT_INFO);
-                System.out.print(ConsoleConstants.DICTIONARY_SELECTION);
-                nameFile = ConsoleConstants.user.next();
 
-                if(nameFile.equals(ConsoleConstants.EXIT)){
-                    exitProgram = true;
-                    continue;
-                }
-                HashMap<String,String> dictionarySelected;
-                try {
-                    dictionarySelected = documents.dictionaryHashMap(nameFile);
-                    viewDictionary(dictionarySelected);
+        DictionaryManager directory = new Dictionary();
+        nameFiles = directory.getDictionaries();
 
-                } catch (NullPointerException e){
-                    System.out.println(ConsoleConstants.FILE_NOT_FOUND);
-                    continue;
-                }
-                workWitchDictionary(dictionarySelected);
-            } catch (IOException e){
-                e.printStackTrace();
+        mainMenu:
+        while(!exitProgram) {
+            Commands command = new Start();
+            command.execute(directory);
+            userChoice = ConsoleConstants.userChoice.next();
+            if (userChoice.equalsIgnoreCase("exit")) {
                 exitProgram = true;
+                continue;
             }
-        }
-    }
-    private void workWitchDictionary(HashMap<String,String> dictionarySelected){
-        System.out.println(Arrays.toString(CommandsMenu.values()));
-        boolean exitMenu = false;
-        while (!exitMenu){
-            System.out.print(ConsoleConstants.ENTER_COMMAND);
-            CommandsMenu command = CommandsMenu.checkCommand(ConsoleConstants.user.next());
+            if(checkFile(nameFiles, userChoice)) {
 
-            try {
-                switch (Objects.requireNonNull(command)) {
-                    case ADD -> addInDictionary(dictionarySelected);
-                    case DEL -> removeInDictionary(dictionarySelected);
-                    case VIEW -> viewDictionary(dictionarySelected);
-                    case SEARCH -> searchInDictionary(dictionarySelected);
-                    case BACK -> exitMenu = true;
+                DictionaryManager dictionary = new Dictionary(userChoice);
+                command = new View();
+                command.execute(dictionary);
+                System.out.println(viewMenu());
+
+                dictionaryMenu:
+                while (!command.getName().equalsIgnoreCase("Back")){
+                    userChoice = ConsoleConstants.userChoice.next();
+                    for(Commands c : listCommand){
+                        if(c.getName().equalsIgnoreCase(userChoice)){
+                            command = c;
+                            command.execute(dictionary);
+                            continue dictionaryMenu;
+                        }
+                    }
+
+                    System.out.println("Command not found");
+                    continue mainMenu;
                 }
-            } catch (NullPointerException e){
-                System.out.println(ConsoleConstants.COMMAND_NOT_FOUND);
-            } catch (IOException e){
-                System.out.print(ConsoleConstants.FILE_NOT_FOUND);
+            }
+            else {
+                System.out.println("File not found");
+            }
+
+        }
+
+
+    }
+    private boolean checkFile(List<String> nameFiles, String userChoice){
+        for(String str : nameFiles){
+            if(str.equals(userChoice)){
+                return true;
             }
         }
+        return false;
     }
-    private void addInDictionary(HashMap<String,String> dictionarySelected) throws IOException {
-        System.out.print(ConsoleConstants.ENTERING_A_WORD);
-        String newKey = ConsoleConstants.user.next();
-        System.out.print(ConsoleConstants.ENTERING_A_TRANSLATION);
-        String newMeaning = ConsoleConstants.user.next();
-        String[] info = documents.getInfoDictionary(nameFile);
-
-        if(dictionary.add( dictionarySelected,newKey, newMeaning,info) == null){
-            System.out.println(ConsoleConstants.ERROR_CHECK);
+    private String viewMenu(){
+        StringBuilder menu = new StringBuilder();
+        for(Commands com : listCommand){
+            menu.append(com.getInfo()).append(" | ");
         }
-        else {
-            dictionarySelected = dictionary.add(dictionarySelected, newKey, newMeaning, info);
-            documents.fileOverWrite(dictionarySelected, info);
-            System.out.println(ConsoleConstants.ADD_NEW_STRING);
-        }
-    }
-    private void removeInDictionary(HashMap<String,String> dictionarySelected) throws IOException {
-        System.out.print(ConsoleConstants.WORD_DELETE);
-        String[] info = documents.getInfoDictionary(nameFile);
-        dictionarySelected = dictionary.remove(dictionarySelected, ConsoleConstants.user.next());
-        documents.fileOverWrite(dictionarySelected,info);
-        System.out.println(ConsoleConstants.ENTRY_DELETED);
 
-    }
-    private void searchInDictionary(HashMap<String,String> dictionarySelected){
-        System.out.print(ConsoleConstants.WORD_SEARCH);
-        String str = dictionary.search(dictionarySelected,ConsoleConstants.user.next());
-        System.out.println(Objects.requireNonNullElse(str, ConsoleConstants.STRING_NOT_FOUND));
-    }
-    private void viewList(List<String> list){
-        for(String str : list){
-            System.out.println(str);
-        }
-    }
-    private void viewDictionary(HashMap<String,String> dictionary) {
-        for (Map.Entry<String,String> entry : dictionary.entrySet()) {
-
-            System.out.println(entry);
-
-        }
+        return menu.toString();
     }
 }

@@ -3,7 +3,7 @@ package main.view;
 import java.util.Scanner;
 
 public class ConsoleConstants {
-    public static final Scanner user = new Scanner(System.in);
+    public static final Scanner userChoice  = new Scanner(System.in);
     public static final String DICTIONARY_SELECTION = "Choose a dictionary: ";
     public static final String FILE_NOT_FOUND = "File not found in directory";
     public static final String EXIT_INFO = "Type Exit to end the program ";
@@ -18,9 +18,4 @@ public class ConsoleConstants {
     public static final String ERROR_CHECK = "The new pair does not meet the conditions of the dictionary";
     public static final String WORD_DELETE = "Word to delete: ";
     public static final String ENTRY_DELETED = "The entry was successfully deleted ";
-
-
-
-
-
 }

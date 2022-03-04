@@ -1,9 +1,20 @@
 package main.dictionarywork;
 
 import java.util.HashMap;
+import java.util.List;
 
 public interface DictionaryManager {
-    public String search(HashMap<String,String> dictionarySelected,String key);
-    public HashMap<String,String> add(HashMap<String,String> dictionarySelected , String newKey, String newMeaning, String[] info);
-    public HashMap<String,String> remove(HashMap<String,String> dictionarySelected, String strDel);
+    String getName();
+    String getPatch();
+    String getRulesKey();
+    String getRulesValue();
+
+    List<String> getDictionaries();
+    HashMap<String,String> getDictionary();
+
+    boolean add(String newKey, String newValue);
+    boolean remove(String key);
+    String search(String key);
+
+
 }
