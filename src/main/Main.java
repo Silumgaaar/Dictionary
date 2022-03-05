@@ -1,6 +1,9 @@
 package main;
 
+import main.dictionarywork.Dictionary;
+import main.dictionarywork.DictionaryManager;
 import main.view.ConsoleApp;
+import main.view.InfoCommands;
 import main.view.commands.*;
 
 import java.util.ArrayList;
@@ -9,6 +12,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args){
         List<Commands> listCommand = new ArrayList<>();
+
 
         listCommand.add(new Add());
         listCommand.add(new Remove());

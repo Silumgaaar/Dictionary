@@ -23,6 +23,7 @@ public class ConsoleApp {
         this.listCommand = listCommand;
     }
     public void start(){
+
         String userChoice;
         List<String>  nameFiles;
         boolean exitProgram = false;
@@ -46,13 +47,12 @@ public class ConsoleApp {
                 command = new View();
                 command.execute(dictionary);
                 System.out.println(viewMenu());
-
                 dictionaryMenu:
-                while (!command.getName().equalsIgnoreCase("Back")){
+                while (!command.getInfo().getName().equalsIgnoreCase("Back")){
                     System.out.println(ENTER_COMMAND);
                     userChoice = User.choice.next();
                     for(Commands c : listCommand){
-                        if(c.getName().equalsIgnoreCase(userChoice)){
+                        if(c.getInfo().getName().equalsIgnoreCase(userChoice)){
                             command = c;
                             command.execute(dictionary);
                             continue dictionaryMenu;

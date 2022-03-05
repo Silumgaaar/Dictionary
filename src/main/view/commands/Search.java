@@ -1,25 +1,24 @@
 package main.view.commands;
 
 import main.dictionarywork.DictionaryManager;
+import main.view.InfoCommands;
 import main.view.User;
 
 import java.util.Objects;
 
 public class Search implements Commands{
 
-    private static final String INFO = "Search - string search";
-    private static final String NAME = "Search";
     private static final String STRING_NOT_FOUND = "String not found in dictionary ";
     private static final String WORD_SEARCH = "Enter a word: ";
-
-    @Override
-    public String getName() {
-        return NAME;
+    private final InfoCommands infoCommands;
+    public Search(){
+        infoCommands = InfoCommands.getCommandInfo("search");
     }
 
+
     @Override
-    public String getInfo() {
-        return INFO;
+    public InfoCommands getInfo() {
+        return infoCommands;
     }
 
     @Override

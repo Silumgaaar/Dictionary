@@ -1,9 +1,9 @@
 package main.view.commands;
 
 import main.dictionarywork.DictionaryManager;
+import main.view.InfoCommands;
 
 public interface Commands {
-    String getName();
-    String getInfo();
+    InfoCommands getInfo();
     void execute(DictionaryManager dictionaryManager);
 }

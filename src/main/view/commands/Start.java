@@ -2,20 +2,22 @@ package main.view.commands;
 
 
 import main.dictionarywork.DictionaryManager;
+import main.view.InfoCommands;
 
 import java.util.List;
 
 public class Start implements Commands{
     private static final String DICTIONARY_SELECTION = "Choose a dictionary: ";
+    private final InfoCommands infoCommands;
 
-    @Override
-    public String getName() {
-        return null;
+    public Start(){
+        infoCommands = InfoCommands.getCommandInfo("start");
     }
 
+
     @Override
-    public String getInfo() {
-        return null;
+    public InfoCommands getInfo() {
+        return infoCommands;
     }
 
     @Override

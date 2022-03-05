@@ -1,19 +1,19 @@
 package main.view.commands;
 
 import main.dictionarywork.DictionaryManager;
+import main.view.InfoCommands;
 
 public class Back implements Commands{
-    private static final String INFO = "Back - back to menu";
-    private static final String NAME = "Back";
+    private final InfoCommands infoCommands;
 
-    @Override
-    public String getName() {
-        return NAME;
+    public Back(){
+        infoCommands = InfoCommands.getCommandInfo("back");
     }
 
+
     @Override
-    public String getInfo() {
-        return INFO;
+    public InfoCommands getInfo() {
+        return infoCommands;
     }
 
     @Override
