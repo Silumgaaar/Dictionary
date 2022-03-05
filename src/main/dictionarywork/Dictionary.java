@@ -31,33 +31,27 @@ public class Dictionary implements DictionaryManager {
     public Dictionary(){
         infoDirectory();
     }
-    public Dictionary(String name){
-        infoDirectory();
-        infoDictionary(name);
-        readInFile();
-    }
-    public String getName(){
-        return name;
-    }
-    public String getPatch(){
-        return patch;
-    }
-    public String getRulesKey(){
-        return rulesKey;
-    }
-    public String getRulesValue(){
-        return rulesValue;
-    }
+
     public List<String> getDictionaries(){
         return dictionaries;
     }
     public HashMap<String,String> getDictionary(){
         return dictionary;
     }
+
     public boolean add(String newKey, String newValue){
         if(checkAdd(newKey,newValue)){
             dictionary.put(newKey, newValue);
             fileOverWrite();
+            return true;
+        }
+        return false;
+    }
+    public boolean newDictionary(String name){
+        if(checkFile(name)) {
+            dictionary.clear();
+            infoDictionary(name);
+            readInFile();
             return true;
         }
         return false;
@@ -74,8 +68,26 @@ public class Dictionary implements DictionaryManager {
         return dictionary.get(key);
     }
 
-
-
+    private String getName(){
+        return name;
+    }
+    private String getPatch(){
+        return patch;
+    }
+    private String getRulesKey(){
+        return rulesKey;
+    }
+    private String getRulesValue(){
+        return rulesValue;
+    }
+    private boolean checkFile(String name){
+        for(String str : getDictionaries()){
+            if(str.equals(name)){
+                return true;
+            }
+        }
+        return false;
+    }
     private void fileOverWrite(){
         try {
             Files.write(Paths.get(patch), ("").getBytes());

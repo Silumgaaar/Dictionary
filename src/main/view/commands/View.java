@@ -8,11 +8,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class View implements Commands{
+
     private final InfoCommands infoCommands;
+
     public View(){
         infoCommands = InfoCommands.getCommandInfo("view");
     }
-
 
     @Override
     public InfoCommands getInfo() {

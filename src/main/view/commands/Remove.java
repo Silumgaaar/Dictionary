@@ -5,10 +5,12 @@ import main.view.InfoCommands;
 import main.view.User;
 
 public class Remove implements Commands{
+
     private static final String WORD_DELETE = "Word to delete: ";
     private static final String ENTRY_DELETED = "The entry was successfully deleted ";
     private static final String STRING_NOT_FOUND = "String not found in dictionary ";
     private final InfoCommands infoCommands;
+
     public Remove(){
         infoCommands = InfoCommands.getCommandInfo("remove");
     }

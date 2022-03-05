@@ -11,10 +11,10 @@ public class Search implements Commands{
     private static final String STRING_NOT_FOUND = "String not found in dictionary ";
     private static final String WORD_SEARCH = "Enter a word: ";
     private final InfoCommands infoCommands;
+
     public Search(){
         infoCommands = InfoCommands.getCommandInfo("search");
     }
-
 
     @Override
     public InfoCommands getInfo() {
