@@ -1,7 +1,5 @@
 package main.dictionarywork;
 
-import main.view.ConsoleConstants;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -20,6 +18,7 @@ public class Dictionary implements DictionaryManager {
     private String patch;
     private String rulesKey;
     private String rulesValue;
+
     private final HashMap<String,String> dictionary = new HashMap<>();
     private final List<String> dictionaries = new ArrayList<>();
 
@@ -27,6 +26,7 @@ public class Dictionary implements DictionaryManager {
     private static final String DELIMITER = ",";
     private static final String ERROR_DIRECTORY = "Файл со списком словарей не найден";
     private static final String DASH = "-";
+    private static final String FILE_NOT_FOUND = "File not found in directory";
 
     public Dictionary(){
         infoDirectory();
@@ -36,8 +36,6 @@ public class Dictionary implements DictionaryManager {
         infoDictionary(name);
         readInFile();
     }
-
-
     public String getName(){
         return name;
     }
@@ -45,7 +43,7 @@ public class Dictionary implements DictionaryManager {
         return patch;
     }
     public String getRulesKey(){
-        return rulesKey;                                                    // Геттеры возможно приваты
+        return rulesKey;
     }
     public String getRulesValue(){
         return rulesValue;
@@ -56,9 +54,6 @@ public class Dictionary implements DictionaryManager {
     public HashMap<String,String> getDictionary(){
         return dictionary;
     }
-
-
-
     public boolean add(String newKey, String newValue){
         if(checkAdd(newKey,newValue)){
             dictionary.put(newKey, newValue);
@@ -67,7 +62,6 @@ public class Dictionary implements DictionaryManager {
         }
         return false;
     }
-
     public boolean remove(String key){
         if(dictionary.containsKey(key)){
             dictionary.remove(key);
@@ -76,10 +70,10 @@ public class Dictionary implements DictionaryManager {
         }
         return false;
     }
-
     public String search(String key){
         return dictionary.get(key);
     }
+
 
 
     private void fileOverWrite(){
@@ -90,16 +84,15 @@ public class Dictionary implements DictionaryManager {
                 Files.write(Paths.get(patch), (entry.getKey() + DASH + entry.getValue() + "\n").getBytes(), StandardOpenOption.APPEND);
             }
         }catch (IOException e){
-            System.out.println(ConsoleConstants.FILE_NOT_FOUND);
+            System.out.println(FILE_NOT_FOUND);
         }
     }
-    private void infoDirectory(){                           // чтение файла Library, запись информации об именах файлов в директории в List<String> dictionaries
+    private void infoDirectory(){
             for(String s : filesDirectory()){
                 String[] arr = s.split(DELIMITER);
                 dictionaries.add(arr[2]);
             }
     }
-
     private List<String> filesDirectory(){
         List<String> list = new ArrayList<>();
         try {
@@ -108,7 +101,6 @@ public class Dictionary implements DictionaryManager {
             list.addAll(Files.readAllLines(path));
         } catch (IOException e){
             System.out.println(ERROR_DIRECTORY);
-            //list.add(""); проверить
         }
         return list;
     }
@@ -127,9 +119,7 @@ public class Dictionary implements DictionaryManager {
             return false;
         }
         else return matcherMeaning.matches();
-
     }
-
     private void readInFile(){
         try {
             File file = new File(getPatch());
@@ -143,7 +133,6 @@ public class Dictionary implements DictionaryManager {
             System.out.println("File not found");
         }
     }
-
     private void infoDictionary(String name){
         for(String s : filesDirectory()){
             String[] arr = s.split(DELIMITER);
@@ -156,5 +145,4 @@ public class Dictionary implements DictionaryManager {
             }
         }
     }
-
 }

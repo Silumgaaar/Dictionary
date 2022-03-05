@@ -11,6 +11,12 @@ import main.view.commands.View;
 import java.util.List;
 
 public class ConsoleApp {
+
+    private static final String EXIT_INFO = "Type Exit to end the program ";
+    private static final String EXIT = "Exit";
+    private static final String COMMAND_NOT_FOUND = "Command entered not found ";
+    private static final String FILE_NOT_FOUND = "File not found in directory";
+    private static final String ENTER_COMMAND = "Enter a command: ";
     List<Commands> listCommand;
 
     public ConsoleApp(List<Commands> listCommand){
@@ -28,8 +34,9 @@ public class ConsoleApp {
         while(!exitProgram) {
             Commands command = new Start();
             command.execute(directory);
-            userChoice = ConsoleConstants.userChoice.next();
-            if (userChoice.equalsIgnoreCase("exit")) {
+            System.out.println(EXIT_INFO);
+            userChoice = User.choice.next();
+            if (userChoice.equalsIgnoreCase(EXIT)) {
                 exitProgram = true;
                 continue;
             }
@@ -42,7 +49,8 @@ public class ConsoleApp {
 
                 dictionaryMenu:
                 while (!command.getName().equalsIgnoreCase("Back")){
-                    userChoice = ConsoleConstants.userChoice.next();
+                    System.out.println(ENTER_COMMAND);
+                    userChoice = User.choice.next();
                     for(Commands c : listCommand){
                         if(c.getName().equalsIgnoreCase(userChoice)){
                             command = c;
@@ -51,12 +59,12 @@ public class ConsoleApp {
                         }
                     }
 
-                    System.out.println("Command not found");
+                    System.out.println(COMMAND_NOT_FOUND);
                     continue mainMenu;
                 }
             }
             else {
-                System.out.println("File not found");
+                System.out.println(FILE_NOT_FOUND);
             }
 
         }

@@ -1,11 +1,14 @@
 package main.view.commands;
 
 import main.dictionarywork.DictionaryManager;
-import main.view.ConsoleConstants;
+import main.view.User;
 
 public class Remove implements Commands{
-    public static final String INFO = "Remove - remove line";
-    public static final String NAME = "Remove";
+    private static final String INFO = "Remove - remove line";
+    private static final String NAME = "Remove";
+    private static final String WORD_DELETE = "Word to delete: ";
+    private static final String ENTRY_DELETED = "The entry was successfully deleted ";
+    private static final String STRING_NOT_FOUND = "String not found in dictionary ";
 
     @Override
     public String getName() {
@@ -19,14 +22,14 @@ public class Remove implements Commands{
 
     @Override
     public void execute(DictionaryManager dictionaryManager) {
-        System.out.print(ConsoleConstants.WORD_DELETE);
-        String choice = ConsoleConstants.userChoice.next();
+        System.out.print(WORD_DELETE);
+        String choice = User.choice.next();
         if(dictionaryManager.remove(choice)){
             dictionaryManager.remove(choice);
-            System.out.println(ConsoleConstants.ENTRY_DELETED);
+            System.out.println(ENTRY_DELETED);
         }
         else{
-            System.out.println(ConsoleConstants.STRING_NOT_FOUND);
+            System.out.println(STRING_NOT_FOUND);
         }
     }
 }
