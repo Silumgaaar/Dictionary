@@ -1,46 +1,41 @@
 package main.view;
 
 import main.dictionarywork.DictionaryManager;
-import main.view.commands.Commands;
+import main.view.commands.Command;
+
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 public class ConsoleApp {
-
-    private static final String EXIT_INFO = "Type Exit to end the program ";
-    private static final String EXIT = "Exit";
     private static final String COMMAND_NOT_FOUND = "Command entered not found ";
     private static final String ENTER_COMMAND = "Enter a command: ";
-    private static final String NUMBER_FORMAT_EXCEPTION = "Enter the number";
-    HashMap<Integer, Commands> commands = new HashMap<>();
-    DictionaryManager dictionaryManager;
-    Commands command;
 
-    public ConsoleApp(List<Commands> listCommand, DictionaryManager dictionaryManager){
+    private final HashMap<String, Command> commands = new HashMap<>();
+    private final DictionaryManager dictionaryManager;
+
+    public ConsoleApp(List<Command> listCommand, DictionaryManager dictionaryManager){
         this.dictionaryManager = dictionaryManager;
 
-        for(Commands command : listCommand){
-            commands.put(command.getInfo().getNumber(),command);
+        for(Command command : listCommand){
+            commands.put(command.getInfo().getName(),command);
         }
     }
 
     public void start(){
+        Scanner choice = new Scanner(System.in);
         String userChoice = "";
-        command = commands.get(5);
+        Command command = commands.get("Back");
         command.execute(dictionaryManager);
-        System.out.println(EXIT_INFO);
-        while (!userChoice.equalsIgnoreCase(EXIT)){
-            System.out.println(ENTER_COMMAND);
-            userChoice = User.choice.next();
-            try {
-                if (InfoCommands.checkCommand(Integer.parseInt(userChoice))) {
-                    command = commands.get(Integer.parseInt(userChoice));
-                    command.execute(dictionaryManager);
-                } else {
-                    System.out.println(COMMAND_NOT_FOUND);
-                }
-            } catch (NumberFormatException e){
-                System.out.println(NUMBER_FORMAT_EXCEPTION);
+        while (!command.getInfo().getName().equals("Exit")){
+            System.out.print(ENTER_COMMAND);
+            userChoice = choice.next();
+
+            if (Commands.checkCommand(userChoice)) {
+                command = commands.get(userChoice);
+                command.execute(dictionaryManager);
+            } else {
+                System.out.println(COMMAND_NOT_FOUND);
             }
         }
     }

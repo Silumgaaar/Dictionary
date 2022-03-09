@@ -1,9 +1,8 @@
 package main.view.commands;
 
 import main.dictionarywork.DictionaryManager;
-import main.view.InfoCommands;
 
-public interface Commands {
-    InfoCommands getInfo();
+public interface Command {
+    main.view.Commands getInfo();
     void execute(DictionaryManager dictionaryManager);
 }

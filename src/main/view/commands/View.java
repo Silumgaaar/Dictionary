@@ -1,22 +1,22 @@
 package main.view.commands;
 
 import main.dictionarywork.DictionaryManager;
-import main.view.InfoCommands;
+import main.view.Commands;
 
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class View implements Commands{
+public class View implements Command {
 
-    private final InfoCommands infoCommands;
+    private final Commands infoCommands;
 
     public View(){
-        infoCommands = InfoCommands.getCommandInfo("view");
+        infoCommands = Commands.getCommandInfo("View");
     }
 
     @Override
-    public InfoCommands getInfo() {
+    public Commands getInfo() {
         return infoCommands;
     }
 

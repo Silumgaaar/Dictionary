@@ -1,31 +1,33 @@
 package main.view.commands;
 
 import main.dictionarywork.DictionaryManager;
-import main.view.InfoCommands;
-import main.view.User;
+import main.view.Commands;
 
-public class Remove implements Commands{
+import java.util.Scanner;
+
+public class Remove implements Command {
 
     private static final String WORD_DELETE = "Word to delete: ";
     private static final String ENTRY_DELETED = "The entry was successfully deleted ";
     private static final String STRING_NOT_FOUND = "String not found in dictionary ";
-    private final InfoCommands infoCommands;
+    private final Commands infoCommands;
 
     public Remove(){
-        infoCommands = InfoCommands.getCommandInfo("remove");
+        infoCommands = Commands.getCommandInfo("Remove");
     }
 
     @Override
-    public InfoCommands getInfo() {
+    public Commands getInfo() {
         return infoCommands;
     }
 
     @Override
     public void execute(DictionaryManager dictionaryManager) {
+        Scanner choice = new Scanner(System.in);
         System.out.print(WORD_DELETE);
-        String choice = User.choice.next();
-        if(dictionaryManager.remove(choice)){
-            dictionaryManager.remove(choice);
+        String removeStr = choice.next();
+        if(dictionaryManager.remove(removeStr)){
+            dictionaryManager.remove(removeStr);
             System.out.println(ENTRY_DELETED);
         }
         else{
