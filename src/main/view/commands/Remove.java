@@ -23,9 +23,9 @@ public class Remove implements Command {
 
     @Override
     public void execute(DictionaryManager dictionaryManager) {
-        Scanner choice = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.print(WORD_DELETE);
-        String removeStr = choice.next();
+        String removeStr = scanner.next();
         if(dictionaryManager.remove(removeStr)){
             dictionaryManager.remove(removeStr);
             System.out.println(ENTRY_DELETED);

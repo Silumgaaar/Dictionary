@@ -23,9 +23,9 @@ public class Search implements Command {
 
     @Override
     public void execute(DictionaryManager dictionaryManager) {
-        Scanner choice = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.print(WORD_SEARCH);
-        String str = dictionaryManager.search(choice.next());
+        String str = dictionaryManager.search(scanner.next());
         System.out.println(Objects.requireNonNullElse(str,STRING_NOT_FOUND));
 
     }

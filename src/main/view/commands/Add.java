@@ -23,11 +23,11 @@ public class Add implements Command {
 
     @Override
     public void execute(DictionaryManager dictionaryManager) {
-        Scanner choice = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.print(ENTERING_A_WORD);
-        String newKey = choice.next();
+        String newKey = scanner.next();
         System.out.print(ENTERING_A_TRANSLATION);
-        String newValue = choice.next();
+        String newValue = scanner.next();
 
 
         if(dictionaryManager.add(newKey, newValue)){
