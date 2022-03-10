@@ -6,7 +6,7 @@ import main.view.Commands;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class Search implements Command {
+public class Search implements Commander {
 
     private static final String STRING_NOT_FOUND = "String not found in dictionary ";
     private static final String WORD_SEARCH = "Enter a word: ";

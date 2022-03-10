@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args){
-        List<Command> listCommand = new ArrayList<>();
+        List<Commander> listCommand = new ArrayList<>();
         DirectoryWork directoryWork = new Directory();
         DictionaryManager dictionaryManager = new Dictionary(directoryWork);
 

@@ -5,7 +5,7 @@ import main.view.Commands;
 
 import java.util.Scanner;
 
-public class Add implements Command {
+public class Add implements Commander {
     private static final String ENTERING_A_WORD = "Enter a word: ";
     private static final String ENTERING_A_TRANSLATION = "Enter translation: ";
     private static final String ADD_NEW_STRING = "Record successfully added";

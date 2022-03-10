@@ -4,10 +4,9 @@ import main.dictionarywork.DictionaryManager;
 import main.view.Commands;
 
 
-import java.util.HashMap;
 import java.util.Map;
 
-public class View implements Command {
+public class View implements Commander {
 
     private final Commands infoCommands;
 

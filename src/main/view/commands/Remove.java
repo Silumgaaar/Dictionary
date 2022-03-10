@@ -5,7 +5,7 @@ import main.view.Commands;
 
 import java.util.Scanner;
 
-public class Remove implements Command {
+public class Remove implements Commander {
 
     private static final String WORD_DELETE = "Word to delete: ";
     private static final String ENTRY_DELETED = "The entry was successfully deleted ";
