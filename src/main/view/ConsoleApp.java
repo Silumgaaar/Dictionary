@@ -24,11 +24,11 @@ public class ConsoleApp {
 
     public void start(){
         Scanner scanner = new Scanner(System.in);
-        String userChoice = "";
         Command command = commands.get("Back");
         command.execute(dictionaryManager);
         while (!command.getInfo().getName().equals("Exit")){
             System.out.print(ENTER_COMMAND);
+            String userChoice;
             userChoice = scanner.next();
 
             if (Commands.checkCommand(userChoice)) {
