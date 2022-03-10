@@ -24,9 +24,11 @@ public class Directory implements DirectoryWork{
     public Directory(){
         filesDirectory();
     }
+
     public List<String> getInfoDictionaries(){
         return infoDirectory();
     }
+
     public HashMap<String,String> searchDictionary(String name){
         HashMap<String,String> infoDictionary = new HashMap<>();
         for(String s : infoDictionaries){
@@ -43,6 +45,7 @@ public class Directory implements DirectoryWork{
         }
         return infoDictionary;
     }
+
     public HashMap<String,String> readInFile(String patch){
         HashMap<String,String> dictionary = new HashMap<>();
         try {
@@ -59,6 +62,7 @@ public class Directory implements DirectoryWork{
         }
         return dictionary;
     }
+
     public void fileOverWrite(Map<String,String> dictionary,String patch){
         try {
             Files.write(Paths.get(patch), ("").getBytes());

@@ -13,10 +13,8 @@ public class Dictionary implements DictionaryManager {
     private String patch;
     private String rulesKey;
     private String rulesValue;
-
     private Map<String,String> dictionary = new HashMap<>();
     private final DirectoryWork directoryWork;
-
 
     public Dictionary(DirectoryWork directoryWork){
         this.directoryWork = directoryWork;
@@ -33,6 +31,7 @@ public class Dictionary implements DictionaryManager {
     public Map<String,String> getDictionary(){
         return dictionary;
     }
+
     public List<String> viewDirectory(){
         return directoryWork.getInfoDictionaries();
     }
@@ -50,6 +49,7 @@ public class Dictionary implements DictionaryManager {
         }
         return false;
     }
+
     public boolean remove(String key){
         if(dictionary.containsKey(key)){
             dictionary.remove(key);
@@ -58,6 +58,7 @@ public class Dictionary implements DictionaryManager {
         }
         return false;
     }
+
     public String search(String key){
         return dictionary.get(key);
     }

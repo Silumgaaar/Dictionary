@@ -9,9 +9,11 @@ import java.util.Map;
 public class View implements Commander {
 
     private final Commands infoCommands;
+    private final DictionaryManager dictionaryManager;
 
-    public View(){
+    public View(DictionaryManager dictionaryManager){
         infoCommands = Commands.getCommandInfo("View");
+        this.dictionaryManager = dictionaryManager;
     }
 
     @Override
@@ -20,7 +22,7 @@ public class View implements Commander {
     }
 
     @Override
-    public void execute(DictionaryManager dictionaryManager) {
+    public void execute() {
         viewDictionary(dictionaryManager.getDictionary());
     }
     private void viewDictionary(Map<String,String> dictionary){

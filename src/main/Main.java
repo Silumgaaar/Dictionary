@@ -16,14 +16,14 @@ public class Main {
         DirectoryWork directoryWork = new Directory();
         DictionaryManager dictionaryManager = new Dictionary(directoryWork);
 
-        listCommand.add(new Add());
-        listCommand.add(new Remove());
-        listCommand.add(new Search());
-        listCommand.add(new View());
-        listCommand.add(new Back());
+        listCommand.add(new Add(dictionaryManager));
+        listCommand.add(new Remove(dictionaryManager));
+        listCommand.add(new Search(dictionaryManager));
+        listCommand.add(new View(dictionaryManager));
+        listCommand.add(new Back(dictionaryManager));
         listCommand.add(new Exit());
 
-        ConsoleApp console = new ConsoleApp(listCommand, dictionaryManager);
+        ConsoleApp console = new ConsoleApp(listCommand);
 
         console.start();
     }

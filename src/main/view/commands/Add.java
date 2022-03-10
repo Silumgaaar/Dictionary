@@ -11,9 +11,11 @@ public class Add implements Commander {
     private static final String ADD_NEW_STRING = "Record successfully added";
     private static final String ERROR_CHECK = "The new pair does not meet the conditions of the dictionary";
     private final Commands infoCommands;
+    private final DictionaryManager dictionaryManager;
 
-    public Add(){
+    public Add(DictionaryManager dictionaryManager){
         infoCommands = Commands.getCommandInfo("Add");
+        this.dictionaryManager = dictionaryManager;
     }
 
     @Override
@@ -22,7 +24,7 @@ public class Add implements Commander {
     }
 
     @Override
-    public void execute(DictionaryManager dictionaryManager) {
+    public void execute() {
         Scanner scanner = new Scanner(System.in);
         System.out.print(ENTERING_A_WORD);
         String newKey = scanner.next();

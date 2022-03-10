@@ -5,5 +5,5 @@ import main.view.Commands;
 
 public interface Commander {
     Commands getInfo();
-    void execute(DictionaryManager dictionaryManager);
+    void execute();
 }

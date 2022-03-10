@@ -12,11 +12,8 @@ public class ConsoleApp {
     private static final String ENTER_COMMAND = "Enter a command: ";
 
     private final HashMap<String, Commander> commands = new HashMap<>();
-    private final DictionaryManager dictionaryManager;
 
-    public ConsoleApp(List<Commander> listCommand, DictionaryManager dictionaryManager){
-        this.dictionaryManager = dictionaryManager;
-
+    public ConsoleApp(List<Commander> listCommand){
         for(Commander command : listCommand){
             commands.put(command.getInfo().getName(),command);
         }
@@ -25,7 +22,7 @@ public class ConsoleApp {
     public void start(){
         Scanner scanner = new Scanner(System.in);
         Commander commander = commands.get("Back");
-        commander.execute(dictionaryManager);
+        commander.execute();
         while (!commander.getInfo().getName().equals("Exit")){
             System.out.print(ENTER_COMMAND);
             String userChoice;
@@ -33,7 +30,7 @@ public class ConsoleApp {
 
             if (commands.get(userChoice) != null) {
                 commander = commands.get(userChoice);
-                commander.execute(dictionaryManager);
+                commander.execute();
             } else {
                 System.out.println(COMMAND_NOT_FOUND);
             }

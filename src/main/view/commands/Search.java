@@ -11,9 +11,11 @@ public class Search implements Commander {
     private static final String STRING_NOT_FOUND = "String not found in dictionary ";
     private static final String WORD_SEARCH = "Enter a word: ";
     private final Commands infoCommands;
+    private final DictionaryManager dictionaryManager;
 
-    public Search(){
+    public Search(DictionaryManager dictionaryManager){
         infoCommands = Commands.getCommandInfo("Search");
+        this.dictionaryManager = dictionaryManager;
     }
 
     @Override
@@ -22,7 +24,7 @@ public class Search implements Commander {
     }
 
     @Override
-    public void execute(DictionaryManager dictionaryManager) {
+    public void execute() {
         Scanner scanner = new Scanner(System.in);
         System.out.print(WORD_SEARCH);
         String str = dictionaryManager.search(scanner.next());

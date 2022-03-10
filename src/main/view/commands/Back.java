@@ -11,9 +11,10 @@ public class Back implements Commander {
     private final Commands infoCommands;
     private static final String DICTIONARY_SELECTION = "Choose a dictionary: ";
     private static final String FILE_NOT_FOUND = "File not found in directory";
-
-    public Back(){
+    private final DictionaryManager dictionaryManager;
+    public Back(DictionaryManager dictionaryManager){
         infoCommands = Commands.getCommandInfo("Back");
+        this.dictionaryManager = dictionaryManager;
     }
 
     @Override
@@ -22,7 +23,7 @@ public class Back implements Commander {
     }
 
     @Override
-    public void execute(DictionaryManager dictionaryManager) {
+    public void execute() {
         List<String> list;
         list = dictionaryManager.viewDirectory();
         StringBuilder s = new StringBuilder();
