@@ -31,7 +31,7 @@ public class ConsoleApp {
             String userChoice;
             userChoice = scanner.next();
 
-            if (Commands.checkCommand(userChoice)) {
+            if (commands.get(userChoice) != null) {
                 commander = commands.get(userChoice);
                 commander.execute(dictionaryManager);
             } else {

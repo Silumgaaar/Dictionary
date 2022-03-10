@@ -29,15 +29,6 @@ public enum Commands {
         }
         return null;
     }
-    public static boolean checkCommand(String command){
-        for(Commands infoCommands : values()){
-            if(infoCommands.getName().equals(command)){
-                return true;
-            }
-        }
-        return false;
-    }
-
     public StringBuilder viewMenu(){
         StringBuilder stringBuilder = new StringBuilder();
         for(Commands infoCommands : values()) {
