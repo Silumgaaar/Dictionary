@@ -59,7 +59,7 @@ public class Directory implements DirectoryWork{
         }
         return dictionary;
     }
-    public void fileOverWrite(HashMap<String,String> dictionary,String patch){
+    public void fileOverWrite(Map<String,String> dictionary,String patch){
         try {
             Files.write(Paths.get(patch), ("").getBytes());
 

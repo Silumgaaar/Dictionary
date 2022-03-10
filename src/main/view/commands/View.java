@@ -24,7 +24,7 @@ public class View implements Command {
     public void execute(DictionaryManager dictionaryManager) {
         viewDictionary(dictionaryManager.getDictionary());
     }
-    private void viewDictionary(HashMap<String,String> dictionary){
+    private void viewDictionary(Map<String,String> dictionary){
         for (Map.Entry<String,String> entry : dictionary.entrySet()) {
             System.out.println(entry);
         }

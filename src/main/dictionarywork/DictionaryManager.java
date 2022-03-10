@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface DictionaryManager {
-    HashMap<String,String> getDictionary();
+    Map<String,String> getDictionary();
     List<String> viewDirectory();
     boolean newDictionary(String name);
     boolean add(String newKey, String newValue);

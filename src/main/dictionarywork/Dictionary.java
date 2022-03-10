@@ -25,13 +25,13 @@ public class Dictionary implements DictionaryManager {
     public boolean add(String newKey, String newValue){
         if(checkAdd(newKey,newValue)){
             dictionary.put(newKey, newValue);
-            directoryWork.fileOverWrite((HashMap<String, String>) dictionary,patch);
+            directoryWork.fileOverWrite(dictionary,patch);
             return true;
         }
         return false;
     }
-    public HashMap<String,String> getDictionary(){
-        return (HashMap<String, String>) dictionary;
+    public Map<String,String> getDictionary(){
+        return dictionary;
     }
     public List<String> viewDirectory(){
         return directoryWork.getInfoDictionaries();
@@ -53,7 +53,7 @@ public class Dictionary implements DictionaryManager {
     public boolean remove(String key){
         if(dictionary.containsKey(key)){
             dictionary.remove(key);
-            directoryWork.fileOverWrite((HashMap<String, String>) dictionary,patch);
+            directoryWork.fileOverWrite(dictionary,patch);
             return true;
         }
         return false;
