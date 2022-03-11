@@ -1,6 +1,6 @@
 package main.view.commands;
 
-import main.structure.Config;
+import main.structure.ConfigDictionary;
 import main.view.Commands;
 import java.util.Scanner;
 
@@ -10,9 +10,9 @@ public class Remove implements Commander {
     private static final String ENTRY_DELETED = "The entry was successfully deleted ";
     private static final String STRING_NOT_FOUND = "String not found in dictionary ";
     private final Commands infoCommands;
-    private final Config config;
+    private final ConfigDictionary config;
 
-    public Remove(Config config){
+    public Remove(ConfigDictionary config){
         infoCommands = Commands.getCommandInfo("Remove");
         this.config = config;
 

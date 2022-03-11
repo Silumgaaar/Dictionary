@@ -1,15 +1,15 @@
 package main.view.commands;
 
-import main.structure.Config;
+import main.structure.ConfigDictionary;
 import main.view.Commands;
 import java.util.Map;
 
 public class View implements Commander {
 
     private final Commands infoCommands;
-    private final Config config;
+    private final ConfigDictionary config;
 
-    public View(Config config){
+    public View(ConfigDictionary config){
         infoCommands = Commands.getCommandInfo("View");
         this.config = config;
     }

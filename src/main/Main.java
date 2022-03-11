@@ -1,6 +1,7 @@
 package main;
 
-import main.structure.Config;
+import main.dictionarywork.DictionaryManager;
+import main.dictionarywork.Directory;
 import main.structure.ConfigDictionary;
 import main.view.ConsoleApp;
 import main.view.commands.*;
@@ -10,7 +11,8 @@ import java.util.List;
 public class Main {
     public static void main(String[] args){
         List<Commander> listCommand = new ArrayList<>();
-        Config config = new ConfigDictionary();
+        DictionaryManager directory = new Directory();
+        ConfigDictionary config = new ConfigDictionary(directory);
 
 
         listCommand.add(new Add(config));

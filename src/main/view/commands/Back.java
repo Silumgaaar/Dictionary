@@ -2,9 +2,8 @@ package main.view.commands;
 
 import main.dictionarywork.Dictionary;
 import main.dictionarywork.DictionaryManager;
-import main.structure.Config;
+import main.structure.ConfigDictionary;
 import main.view.Commands;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -12,8 +11,8 @@ public class Back implements Commander {
     private final Commands infoCommands;
     private static final String DICTIONARY_SELECTION = "Choose a dictionary: ";
     private static final String FILE_NOT_FOUND = "File not found in directory";
-    private final Config config;
-    public Back(Config config){
+    private final ConfigDictionary config;
+    public Back(ConfigDictionary config){
         infoCommands = Commands.getCommandInfo("Back");
         this.config = config;
     }
@@ -25,11 +24,10 @@ public class Back implements Commander {
 
     @Override
     public void execute() {
-        List<String> list;
-        list = config.getAllNamesDirectory();
+        Map<String,String> info = config.getDirectory().getAll();
 
         StringBuilder s = new StringBuilder();
-        for(String str : list){
+        for(String str : info.keySet()){
             s.append(str).append("\n");
         }
 
@@ -38,7 +36,7 @@ public class Back implements Commander {
         Scanner scanner = new Scanner(System.in);
 
         String choice = scanner.next();
-        while (!check(list, choice)){
+        while (!check(info, choice)){
             System.out.print(FILE_NOT_FOUND + "\n" + DICTIONARY_SELECTION);
             choice = scanner.next();
         }
@@ -52,9 +50,9 @@ public class Back implements Commander {
 
 
 
-    private boolean check(List<String> list, String choice){
-        for(String s : list){
-            if(s.equals(choice)){
+    private boolean check(Map<String,String> info, String choice){
+        for(String name : info.keySet()){
+            if(name.equals(choice)){
                 return true;
             }
         }

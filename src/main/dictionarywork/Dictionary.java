@@ -1,7 +1,7 @@
 package main.dictionarywork;
 
 
-import main.structure.Config;
+import main.structure.ConfigDictionary;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,13 +18,12 @@ public class Dictionary implements DictionaryManager {
     private static final String DASH = "-";
     private static final String FILE_NOT_FOUND = "File not found in directory";
     private final Map<String,String> dictionary = new HashMap<>();
-    private String name;
     private String patch;
     private String rulesKey;
     private String rulesValue;
-    private final Config config;
+    private final ConfigDictionary config;
 
-    public Dictionary(Config config, String name){
+    public Dictionary(ConfigDictionary config, String name){
         this.config = config;
         newDictionary(name);
     }
@@ -61,7 +60,6 @@ public class Dictionary implements DictionaryManager {
         Map<String,String> infoDictionary;
         infoDictionary = config.getInfoDictionary(name);
         if(!infoDictionary.isEmpty()) {
-            this.name = infoDictionary.get("name");
             this.patch = infoDictionary.get("patch");
             this.rulesKey = infoDictionary.get("rulesKey");
             this.rulesValue = infoDictionary.get("rulesValue");
