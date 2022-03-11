@@ -1,8 +1,7 @@
 package main.view.commands;
 
-import main.dictionarywork.DictionaryManager;
+import main.structure.Config;
 import main.view.Commands;
-
 import java.util.Scanner;
 
 public class Add implements Commander {
@@ -11,11 +10,11 @@ public class Add implements Commander {
     private static final String ADD_NEW_STRING = "Record successfully added";
     private static final String ERROR_CHECK = "The new pair does not meet the conditions of the dictionary";
     private final Commands infoCommands;
-    private final DictionaryManager dictionaryManager;
+    private final Config config;
 
-    public Add(DictionaryManager dictionaryManager){
+    public Add(Config config){
         infoCommands = Commands.getCommandInfo("Add");
-        this.dictionaryManager = dictionaryManager;
+        this.config = config;
     }
 
     @Override
@@ -32,8 +31,8 @@ public class Add implements Commander {
         String newValue = scanner.next();
 
 
-        if(dictionaryManager.add(newKey, newValue)){
-            dictionaryManager.add(newKey, newValue);
+        if(config.getDictionary().add(newKey, newValue)){
+            config.getDictionary().add(newKey, newValue);
             System.out.println(ADD_NEW_STRING);
         }
         else {

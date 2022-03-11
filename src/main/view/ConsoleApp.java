@@ -1,8 +1,6 @@
 package main.view;
 
-import main.dictionarywork.DictionaryManager;
 import main.view.commands.Commander;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;

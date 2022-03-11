@@ -1,19 +1,17 @@
 package main.view.commands;
 
-import main.dictionarywork.DictionaryManager;
+import main.structure.Config;
 import main.view.Commands;
-
-
 import java.util.Map;
 
 public class View implements Commander {
 
     private final Commands infoCommands;
-    private final DictionaryManager dictionaryManager;
+    private final Config config;
 
-    public View(DictionaryManager dictionaryManager){
+    public View(Config config){
         infoCommands = Commands.getCommandInfo("View");
-        this.dictionaryManager = dictionaryManager;
+        this.config = config;
     }
 
     @Override
@@ -23,7 +21,7 @@ public class View implements Commander {
 
     @Override
     public void execute() {
-        viewDictionary(dictionaryManager.getDictionary());
+        viewDictionary(config.getDictionary().getAll());
     }
     private void viewDictionary(Map<String,String> dictionary){
         for (Map.Entry<String,String> entry : dictionary.entrySet()) {
