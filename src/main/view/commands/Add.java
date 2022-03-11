@@ -24,7 +24,7 @@ public class Add implements Commander {
 
     @Override
     public void execute() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in,"windows-1251");
         System.out.print(ENTERING_A_WORD);
         String newKey = scanner.next();
         System.out.print(ENTERING_A_TRANSLATION);

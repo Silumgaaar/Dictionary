@@ -24,7 +24,7 @@ public class Search implements Commander {
 
     @Override
     public void execute() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in,"windows-1251");
         System.out.print(WORD_SEARCH);
         String str = config.getDictionary().search(scanner.next());
         System.out.println(Objects.requireNonNullElse(str,STRING_NOT_FOUND));

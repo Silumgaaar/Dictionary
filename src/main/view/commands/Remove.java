@@ -25,7 +25,7 @@ public class Remove implements Commander {
 
     @Override
     public void execute() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in,"windows-1251");
         System.out.print(WORD_DELETE);
         String removeStr = scanner.next();
         if(config.getDictionary().remove(removeStr)){

@@ -5,6 +5,7 @@ import main.structure.ConfigDictionary;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -85,7 +86,7 @@ public class Dictionary implements DictionaryManager {
             Files.write(Paths.get(patch), ("").getBytes());
 
             for (Map.Entry<String, String> entry : dictionary.entrySet()) {
-                Files.write(Paths.get(patch), (entry.getKey() + DASH + entry.getValue() + "\n").getBytes(), StandardOpenOption.APPEND);
+                Files.writeString(Paths.get(patch), entry.getKey() + DASH + entry.getValue() + "\n", StandardOpenOption.APPEND);
             }
         }catch (IOException e){
             System.out.println(FILE_NOT_FOUND);
@@ -96,7 +97,7 @@ public class Dictionary implements DictionaryManager {
             File file = new File(patch);
             Path path = file.toPath();
 
-            for (String str : Files.readAllLines(path)) {
+            for (String str : Files.readAllLines(path, StandardCharsets.UTF_8)) {
                 String[] strDictionary = str.split(DASH);
                 dictionary.put(strDictionary[0], strDictionary[1]);
             }

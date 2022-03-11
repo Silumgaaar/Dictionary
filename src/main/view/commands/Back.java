@@ -33,7 +33,7 @@ public class Back implements Commander {
 
         System.out.print(s + DICTIONARY_SELECTION);
 
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in,"windows-1251");
 
         String choice = scanner.next();
         while (!check(info, choice)){

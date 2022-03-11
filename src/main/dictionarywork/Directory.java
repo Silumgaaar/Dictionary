@@ -2,6 +2,7 @@ package main.dictionarywork;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
@@ -46,7 +47,7 @@ public class Directory implements DictionaryManager{
         try {
             File file = new File(LIBRARY);
             Path path = file.toPath();
-            for (String line : Files.readAllLines(path)){
+            for (String line : Files.readAllLines(path, StandardCharsets.UTF_8)){
                 String[] info = line.split(DELIMITER);
                 infoDictionaries.put(info[0],info[1]);
             }
