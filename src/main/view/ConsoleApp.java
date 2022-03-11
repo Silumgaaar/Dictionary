@@ -25,7 +25,7 @@ public class ConsoleApp {
             System.out.print(ENTER_COMMAND);
             String userChoice = scanner.next();
 
-            if (commands.get(userChoice) != null) {
+            if (commands.containsKey(userChoice)) {
                 commander = commands.get(userChoice);
                 commander.execute();
             } else {
