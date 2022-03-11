@@ -23,8 +23,7 @@ public class ConsoleApp {
         commander.execute();
         while (!commander.getInfo().getName().equals("Exit")){
             System.out.print(ENTER_COMMAND);
-            String userChoice;
-            userChoice = scanner.next();
+            String userChoice = scanner.next();
 
             if (commands.get(userChoice) != null) {
                 commander = commands.get(userChoice);
