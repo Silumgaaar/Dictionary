@@ -1,7 +1,8 @@
 set DIR_PROJECT=src/classes
 del /s %DIR_BIN%\*.class >NUL
-javac -d src/classes -sourcepath src src/main/*.java -encoding UTF8
+chcp 1251
+javac -d src/classes -sourcepath src src/main/*.java 
 cd src/classes
-java main.Main -encoding UTF8
+java main.Main 
 
 pause
