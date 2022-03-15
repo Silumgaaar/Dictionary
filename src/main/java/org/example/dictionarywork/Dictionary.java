@@ -32,7 +32,7 @@ public class Dictionary implements DictionaryManager {
     public boolean add(String newKey, String newValue){
         if(checkAdd(newKey,newValue)){
             dictionary.put(newKey, newValue);
-            fileOverWrite(patch);
+            fileOverWrite();
             return true;
         }
         return false;
@@ -41,7 +41,7 @@ public class Dictionary implements DictionaryManager {
     public boolean remove(String key){
         if(dictionary.containsKey(key)){
             dictionary.remove(key);
-            fileOverWrite(patch);
+            fileOverWrite();
             return true;
         }
         return false;
@@ -78,7 +78,7 @@ public class Dictionary implements DictionaryManager {
         }
         else return matcherMeaning.matches();
     }
-    private void fileOverWrite(String patch){
+    private void fileOverWrite(){
         try {
             Files.write(Paths.get(patch), ("").getBytes());
 
