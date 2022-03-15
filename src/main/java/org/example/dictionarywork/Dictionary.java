@@ -47,6 +47,8 @@ public class Dictionary implements DictionaryManager {
         return false;
     }
     public Map<String,String> view(){
+        Map<String,String> dictionary;
+        dictionary = this.dictionary;
         return dictionary;
     }
 
