@@ -1,20 +1,23 @@
 package org.example.structure;
 
 import org.example.dictionarywork.DictionaryManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.util.HashMap;
 import java.util.Map;
-
+@Component
 public class ConfigDictionary{
     private static final String DELIMITER = ",";
 
     DictionaryManager dictionary;
     DictionaryManager directory;
 
-
+    @Autowired
     public ConfigDictionary(DictionaryManager directory){
         this.directory = directory;
     }
-
+   // @Autowired
     public void setDictionary(DictionaryManager dictionary) {
         this.dictionary = dictionary;
     }

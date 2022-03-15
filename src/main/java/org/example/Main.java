@@ -1,28 +1,29 @@
 package org.example;
 
-import org.example.dictionarywork.DictionaryManager;
-import org.example.dictionarywork.Directory;
 import org.example.structure.ConfigDictionary;
 import org.example.view.ConsoleApp;
 import org.example.view.commands.*;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         List<Commander> listCommand = new ArrayList<>();
-        DictionaryManager directory = new Directory();
-        ConfigDictionary config = new ConfigDictionary(directory);
+        ConfigDictionary config = context.getBean(ConfigDictionary.class);
 
 
-        listCommand.add(new Add(config));
-        listCommand.add(new Remove(config));
-        listCommand.add(new Search(config));
-        listCommand.add(new View(config));
-        listCommand.add(new Back(config));
-        listCommand.add(new Exit());
+        listCommand.add(context.getBean(Add.class));
+        listCommand.add(context.getBean(Remove.class));
+        listCommand.add(context.getBean(Search.class));
+        listCommand.add(context.getBean(View.class));
+        listCommand.add(context.getBean(Back.class));
+        listCommand.add(context.getBean(Exit.class));
 
-        ConsoleApp console = new ConsoleApp(listCommand);
+        ConsoleApp console = context.getBean(ConsoleApp.class);
 
         console.start(config);
     }

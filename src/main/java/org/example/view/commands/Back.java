@@ -4,9 +4,11 @@ import org.example.dictionarywork.Dictionary;
 import org.example.dictionarywork.DictionaryManager;
 import org.example.structure.ConfigDictionary;
 import org.example.view.Commands;
+import org.springframework.stereotype.Component;
+
 import java.util.Map;
 import java.util.Scanner;
-
+@Component
 public class Back implements Commander {
     private final Commands infoCommands;
     private static final String DICTIONARY_SELECTION = "Choose a dictionary: ";

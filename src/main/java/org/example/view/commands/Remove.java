@@ -2,8 +2,11 @@ package org.example.view.commands;
 
 import org.example.structure.ConfigDictionary;
 import org.example.view.Commands;
-import java.util.Scanner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import java.util.Scanner;
+@Component
 public class Remove implements Commander {
 
     private static final String WORD_DELETE = "Word to delete: ";
@@ -11,7 +14,7 @@ public class Remove implements Commander {
     private static final String STRING_NOT_FOUND = "String not found in dictionary ";
     private final Commands infoCommands;
     private final ConfigDictionary config;
-
+    @Autowired
     public Remove(ConfigDictionary config){
         infoCommands = Commands.getCommandInfo("Remove");
         this.config = config;

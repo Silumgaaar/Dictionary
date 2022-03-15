@@ -3,17 +3,20 @@ package org.example.view;
 import org.example.structure.ConfigDictionary;
 import org.example.view.commands.Back;
 import org.example.view.commands.Commander;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
-
+@Component
 public class ConsoleApp {
     private static final String COMMAND_NOT_FOUND = "Command entered not found ";
     private static final String ENTER_COMMAND = "Enter a command: ";
 
     private final HashMap<String, Commander> commands = new HashMap<>();
 
+    @Autowired
     public ConsoleApp(List<Commander> listCommand){
         for(Commander command : listCommand){
             commands.put(command.getInfo().getName(),command);

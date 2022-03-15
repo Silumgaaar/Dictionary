@@ -2,13 +2,16 @@ package org.example.view.commands;
 
 import org.example.structure.ConfigDictionary;
 import org.example.view.Commands;
-import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import java.util.Map;
+@Component
 public class View implements Commander {
 
     private final Commands infoCommands;
     private final ConfigDictionary config;
-
+    @Autowired
     public View(ConfigDictionary config){
         infoCommands = Commands.getCommandInfo("View");
         this.config = config;

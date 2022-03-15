@@ -2,16 +2,19 @@ package org.example.view.commands;
 
 import org.example.structure.ConfigDictionary;
 import org.example.view.Commands;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.util.Objects;
 import java.util.Scanner;
-
+@Component
 public class Search implements Commander {
 
     private static final String STRING_NOT_FOUND = "String not found in dictionary ";
     private static final String WORD_SEARCH = "Enter a word: ";
     private final Commands infoCommands;
     private final ConfigDictionary config;
-
+    @Autowired
     public Search(ConfigDictionary config){
         infoCommands = Commands.getCommandInfo("Search");
         this.config = config;

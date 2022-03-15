@@ -1,7 +1,9 @@
 package org.example.view.commands;
 
 import org.example.view.Commands;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Exit implements Commander {
     private final Commands infoCommands;
     private static final String PROGRAM_COMPLETED = "Program completed";

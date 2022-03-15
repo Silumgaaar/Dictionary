@@ -2,8 +2,11 @@ package org.example.view.commands;
 
 import org.example.structure.ConfigDictionary;
 import org.example.view.Commands;
-import java.util.Scanner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import java.util.Scanner;
+@Component
 public class Add implements Commander {
     private static final String ENTERING_A_WORD = "Enter a word: ";
     private static final String ENTERING_A_TRANSLATION = "Enter translation: ";
@@ -11,7 +14,7 @@ public class Add implements Commander {
     private static final String ERROR_CHECK = "The new pair does not meet the conditions of the dictionary";
     private final Commands infoCommands;
     private final ConfigDictionary config;
-
+@Autowired
     public Add(ConfigDictionary config){
         infoCommands = Commands.getCommandInfo("Add");
         this.config = config;
