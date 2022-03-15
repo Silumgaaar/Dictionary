@@ -55,8 +55,7 @@ public class Dictionary implements DictionaryManager {
     }
 
     private void createDictionary(String name){
-        Map<String,String> infoDictionary;
-        infoDictionary = config.getInfoDictionary(name);
+        Map<String,String> infoDictionary = config.getInfoDictionary(name);
         if(!infoDictionary.isEmpty()) {
             this.path = infoDictionary.get("patch");
             this.rulesKey = infoDictionary.get("rulesKey");
