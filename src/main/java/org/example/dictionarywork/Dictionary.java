@@ -28,9 +28,6 @@ public class Dictionary implements DictionaryManager {
         this.config = config;
         createDictionary(name);
     }
-    public Map<String,String> getAll(){
-        return dictionary;
-    }
 
     public boolean add(String newKey, String newValue){
         if(checkAdd(newKey,newValue)){

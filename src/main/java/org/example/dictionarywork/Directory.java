@@ -30,7 +30,7 @@ public class Directory implements DictionaryManager{
 
     @Override
     public Map<String, String> view() {
-        return null;
+        return infoDictionaries;
     }
 
     @Override
@@ -38,10 +38,6 @@ public class Directory implements DictionaryManager{
         return null;
     }
 
-    @Override
-    public Map<String, String> getAll() {
-        return infoDictionaries;
-    }
 
     private void filesDirectory(){
         try {

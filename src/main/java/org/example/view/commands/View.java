@@ -21,7 +21,7 @@ public class View implements Commander {
 
     @Override
     public void execute() {
-        viewDictionary(config.getDictionary().getAll());
+        viewDictionary(config.getDictionary().view());
     }
     private void viewDictionary(Map<String,String> dictionary){
         for (Map.Entry<String,String> entry : dictionary.entrySet()) {

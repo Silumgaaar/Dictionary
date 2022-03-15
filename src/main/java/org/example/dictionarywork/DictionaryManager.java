@@ -8,7 +8,4 @@ public interface DictionaryManager {
     Map<String,String> view();
     String search(String key);
 
-    Map<String,String> getAll();
-
-
 }
