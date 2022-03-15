@@ -1,10 +1,10 @@
-package main;
+package org.example;
 
-import main.dictionarywork.DictionaryManager;
-import main.dictionarywork.Directory;
-import main.structure.ConfigDictionary;
-import main.view.ConsoleApp;
-import main.view.commands.*;
+import org.example.dictionarywork.DictionaryManager;
+import org.example.dictionarywork.Directory;
+import org.example.structure.ConfigDictionary;
+import org.example.view.ConsoleApp;
+import org.example.view.commands.*;
 import java.util.ArrayList;
 import java.util.List;
 

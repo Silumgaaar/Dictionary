@@ -1,7 +1,7 @@
-package main.view.commands;
+package org.example.view.commands;
 
-import main.structure.ConfigDictionary;
-import main.view.Commands;
+import org.example.structure.ConfigDictionary;
+import org.example.view.Commands;
 import java.util.Map;
 
 public class View implements Commander {

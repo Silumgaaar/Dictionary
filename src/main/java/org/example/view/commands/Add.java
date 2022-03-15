@@ -1,7 +1,7 @@
-package main.view.commands;
+package org.example.view.commands;
 
-import main.structure.ConfigDictionary;
-import main.view.Commands;
+import org.example.structure.ConfigDictionary;
+import org.example.view.Commands;
 import java.util.Scanner;
 
 public class Add implements Commander {
@@ -24,7 +24,7 @@ public class Add implements Commander {
 
     @Override
     public void execute() {
-        Scanner scanner = new Scanner(System.in,"windows-1251");
+        Scanner scanner = new Scanner(System.in);
         System.out.print(ENTERING_A_WORD);
         String newKey = scanner.next();
         System.out.print(ENTERING_A_TRANSLATION);

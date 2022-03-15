@@ -1,4 +1,4 @@
-package main.view;
+package org.example.view;
 
 public enum Commands {
     ADD("Add - add line", "Add"),

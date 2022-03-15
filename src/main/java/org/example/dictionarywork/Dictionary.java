@@ -1,7 +1,7 @@
-package main.dictionarywork;
+package org.example.dictionarywork;
 
 
-import main.structure.ConfigDictionary;
+import org.example.structure.ConfigDictionary;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,7 +26,7 @@ public class Dictionary implements DictionaryManager {
 
     public Dictionary(ConfigDictionary config, String name){
         this.config = config;
-        newDictionary(name);
+        createDictionary(name);
     }
     public Map<String,String> getAll(){
         return dictionary;
@@ -57,7 +57,7 @@ public class Dictionary implements DictionaryManager {
         return dictionary.get(key);
     }
 
-    private void newDictionary(String name){
+    private void createDictionary(String name){
         Map<String,String> infoDictionary;
         infoDictionary = config.getInfoDictionary(name);
         if(!infoDictionary.isEmpty()) {

@@ -1,7 +1,7 @@
-package main.view.commands;
+package org.example.view.commands;
 
-import main.structure.ConfigDictionary;
-import main.view.Commands;
+import org.example.structure.ConfigDictionary;
+import org.example.view.Commands;
 import java.util.Scanner;
 
 public class Remove implements Commander {
@@ -25,7 +25,7 @@ public class Remove implements Commander {
 
     @Override
     public void execute() {
-        Scanner scanner = new Scanner(System.in,"windows-1251");
+        Scanner scanner = new Scanner(System.in);
         System.out.print(WORD_DELETE);
         String removeStr = scanner.next();
         if(config.getDictionary().remove(removeStr)){

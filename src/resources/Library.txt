@@ -1,2 +1,0 @@
-English-Russian'^[A-Za-z]{4}$,^[а-яёА-ЯЁ]{4}$,../resources/DictionaryType1.txt
-Digital-Russian'^[0-9]{5}$,^[а-яёА-ЯЁ]{5}$,../resources/DictionaryType2.txt

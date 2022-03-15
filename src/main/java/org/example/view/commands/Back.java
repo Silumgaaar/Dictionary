@@ -1,9 +1,9 @@
-package main.view.commands;
+package org.example.view.commands;
 
-import main.dictionarywork.Dictionary;
-import main.dictionarywork.DictionaryManager;
-import main.structure.ConfigDictionary;
-import main.view.Commands;
+import org.example.dictionarywork.Dictionary;
+import org.example.dictionarywork.DictionaryManager;
+import org.example.structure.ConfigDictionary;
+import org.example.view.Commands;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -33,7 +33,7 @@ public class Back implements Commander {
 
         System.out.print(s + DICTIONARY_SELECTION);
 
-        Scanner scanner = new Scanner(System.in,"windows-1251");
+        Scanner scanner = new Scanner(System.in);
 
         String choice = scanner.next();
         while (!check(info, choice)){

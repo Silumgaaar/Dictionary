@@ -1,4 +1,4 @@
-package main.dictionarywork;
+package org.example.dictionarywork;
 
 import java.util.Map;
 

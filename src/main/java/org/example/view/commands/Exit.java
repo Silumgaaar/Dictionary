@@ -1,6 +1,6 @@
-package main.view.commands;
+package org.example.view.commands;
 
-import main.view.Commands;
+import org.example.view.Commands;
 
 public class Exit implements Commander {
     private final Commands infoCommands;

@@ -1,8 +1,7 @@
-package main.view;
+package org.example.view;
 
-import main.view.commands.Commander;
+import org.example.view.commands.Commander;
 
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
@@ -20,7 +19,7 @@ public class ConsoleApp {
     }
 
     public void start(){
-        Scanner scanner = new Scanner(System.in,"windows-1251");
+        Scanner scanner = new Scanner(System.in);
         Commander commander = commands.get("Back");
         commander.execute();
         while (!commander.getInfo().getName().equals("Exit")){

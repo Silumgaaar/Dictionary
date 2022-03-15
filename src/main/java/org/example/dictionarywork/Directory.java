@@ -1,4 +1,4 @@
-package main.dictionarywork;
+package org.example.dictionarywork;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Directory implements DictionaryManager{
-    private static final String LIBRARY = "../resources/Library.txt";
+    private static final String LIBRARY = "src/main/resources/Library.txt";
     private static final String ERROR_DIRECTORY = "Dictionary list file not found ";
     private static final String DELIMITER = "'";
 

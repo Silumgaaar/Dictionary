@@ -1,6 +1,6 @@
-package main.structure;
+package org.example.structure;
 
-import main.dictionarywork.DictionaryManager;
+import org.example.dictionarywork.DictionaryManager;
 import java.util.HashMap;
 import java.util.Map;
 
