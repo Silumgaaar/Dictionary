@@ -1,5 +1,7 @@
 package org.example.view;
 
+import org.example.structure.ConfigDictionary;
+import org.example.view.commands.Back;
 import org.example.view.commands.Commander;
 
 import java.util.HashMap;
@@ -18,12 +20,14 @@ public class ConsoleApp {
         }
     }
 
-    public void start(){
-        Scanner scanner = new Scanner(System.in);
-        Commander commander = commands.get("Back");
+    public void start(ConfigDictionary configDictionary){
+
+        Commander commander = new Back(configDictionary);
         commander.execute();
+
         while (!commander.getInfo().getName().equals("Exit")){
             System.out.print(ENTER_COMMAND);
+            Scanner scanner = new Scanner(System.in);
             String userChoice = scanner.next();
 
             if (commands.containsKey(userChoice)) {

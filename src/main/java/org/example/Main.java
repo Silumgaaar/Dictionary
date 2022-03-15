@@ -24,6 +24,6 @@ public class Main {
 
         ConsoleApp console = new ConsoleApp(listCommand);
 
-        console.start();
+        console.start(config);
     }
 }
