@@ -19,7 +19,7 @@ public class Dictionary implements DictionaryManager {
     private static final String DASH = "-";
     private static final String FILE_NOT_FOUND = "File not found in directory";
     private final Map<String,String> dictionary = new HashMap<>();
-    private String patch;
+    private String path;
     private String rulesKey;
     private String rulesValue;
     private final ConfigDictionary config;
@@ -58,10 +58,10 @@ public class Dictionary implements DictionaryManager {
         Map<String,String> infoDictionary;
         infoDictionary = config.getInfoDictionary(name);
         if(!infoDictionary.isEmpty()) {
-            this.patch = infoDictionary.get("patch");
+            this.path = infoDictionary.get("patch");
             this.rulesKey = infoDictionary.get("rulesKey");
             this.rulesValue = infoDictionary.get("rulesValue");
-            readInFile(patch);
+            readInFile(path);
         }
     }
     private boolean checkAdd(String newKey, String newValue){
@@ -80,10 +80,10 @@ public class Dictionary implements DictionaryManager {
     }
     private void fileOverWrite(){
         try {
-            Files.write(Paths.get(patch), ("").getBytes());
+            Files.write(Paths.get(path), ("").getBytes());
 
             for (Map.Entry<String, String> entry : dictionary.entrySet()) {
-                Files.writeString(Paths.get(patch), entry.getKey() + DASH + entry.getValue() + "\n", StandardOpenOption.APPEND);
+                Files.writeString(Paths.get(path), entry.getKey() + DASH + entry.getValue() + "\n", StandardOpenOption.APPEND);
             }
         }catch (IOException e){
             System.out.println(FILE_NOT_FOUND);
