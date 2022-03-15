@@ -28,10 +28,10 @@ public class ConfigDictionary{
     }
 
     public Map<String,String> getInfoDictionary(String name){
-        return newInfoDictionary(name);
+        return createInfoDictionary(name);
     }
 
-    private Map<String,String> newInfoDictionary(String name) {
+    private Map<String,String> createInfoDictionary(String name) {
         Map<String,String> infoDictionary = new HashMap<>();
         String[] info =  directory.view().get(name).split(DELIMITER);
 
