@@ -1,7 +1,7 @@
-package org.example.view.commands;
+package ru.yarkin.view.commands;
 
-import org.example.structure.ConfigDictionary;
-import org.example.view.Commands;
+import ru.yarkin.structure.ConfigDictionary;
+import ru.yarkin.view.Commands;
 import java.util.Scanner;
 
 public class Remove implements Commander {

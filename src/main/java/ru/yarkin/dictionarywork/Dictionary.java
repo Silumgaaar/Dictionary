@@ -1,7 +1,7 @@
-package org.example.dictionarywork;
+package ru.yarkin.dictionarywork;
 
 
-import org.example.structure.ConfigDictionary;
+import ru.yarkin.structure.ConfigDictionary;
 
 import java.io.File;
 import java.io.IOException;

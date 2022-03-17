@@ -1,6 +1,7 @@
-package org.example.structure;
+package ru.yarkin.structure;
 
-import org.example.dictionarywork.DictionaryManager;
+import ru.yarkin.dictionarywork.DictionaryManager;
+
 import java.util.HashMap;
 import java.util.Map;
 

@@ -1,9 +1,9 @@
-package org.example.view.commands;
+package ru.yarkin.view.commands;
 
-import org.example.dictionarywork.Dictionary;
-import org.example.dictionarywork.DictionaryManager;
-import org.example.structure.ConfigDictionary;
-import org.example.view.Commands;
+import ru.yarkin.dictionarywork.Dictionary;
+import ru.yarkin.dictionarywork.DictionaryManager;
+import ru.yarkin.structure.ConfigDictionary;
+import ru.yarkin.view.Commands;
 import java.util.Map;
 import java.util.Scanner;
 

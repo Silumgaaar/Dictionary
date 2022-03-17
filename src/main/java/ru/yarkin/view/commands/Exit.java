@@ -1,6 +1,6 @@
-package org.example.view.commands;
+package ru.yarkin.view.commands;
 
-import org.example.view.Commands;
+import ru.yarkin.view.Commands;
 
 public class Exit implements Commander {
     private final Commands infoCommands;

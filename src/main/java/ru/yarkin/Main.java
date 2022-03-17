@@ -1,10 +1,12 @@
-package org.example;
+package ru.yarkin;
 
-import org.example.dictionarywork.DictionaryManager;
-import org.example.dictionarywork.Directory;
-import org.example.structure.ConfigDictionary;
-import org.example.view.ConsoleApp;
-import org.example.view.commands.*;
+import ru.yarkin.dictionarywork.DictionaryManager;
+import ru.yarkin.dictionarywork.Directory;
+import ru.yarkin.structure.ConfigDictionary;
+import ru.yarkin.view.ConsoleApp;
+import ru.yarkin.view.commands.*;
+
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +26,6 @@ public class Main {
 
         ConsoleApp console = new ConsoleApp(listCommand);
 
-        console.start(config);
+        console.start();
     }
 }

@@ -1,8 +1,6 @@
-package org.example.view;
+package ru.yarkin.view;
 
-import org.example.structure.ConfigDictionary;
-import org.example.view.commands.Back;
-import org.example.view.commands.Commander;
+import ru.yarkin.view.commands.Commander;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,14 +18,12 @@ public class ConsoleApp {
         }
     }
 
-    public void start(ConfigDictionary configDictionary){
-
-        Commander commander = new Back(configDictionary);
+    public void start(){
+        Scanner scanner = new Scanner(System.in);
+        Commander commander = commands.get("Back");
         commander.execute();
-
         while (!commander.getInfo().getName().equals("Exit")){
             System.out.print(ENTER_COMMAND);
-            Scanner scanner = new Scanner(System.in);
             String userChoice = scanner.next();
 
             if (commands.containsKey(userChoice)) {

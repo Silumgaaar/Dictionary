@@ -1,4 +1,4 @@
-package org.example.view;
+package ru.yarkin.view;
 
 public enum Commands {
     ADD("Add - add line", "Add"),

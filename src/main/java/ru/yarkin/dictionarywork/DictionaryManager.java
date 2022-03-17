@@ -1,4 +1,4 @@
-package org.example.dictionarywork;
+package ru.yarkin.dictionarywork;
 
 import java.util.Map;
 
