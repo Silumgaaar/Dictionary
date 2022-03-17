@@ -22,9 +22,10 @@ public class ConsoleApp {
         Scanner scanner = new Scanner(System.in);
         Commander commander = commands.get("Back");
         commander.execute();
-        while (!commander.getInfo().getName().equals("Exit")){
+        String userChoice = "";
+        while (!userChoice.equals(commander.getInfo().getName())){
             System.out.print(ENTER_COMMAND);
-            String userChoice = scanner.next();
+            userChoice = scanner.next();
 
             if (commands.containsKey(userChoice)) {
                 commander = commands.get(userChoice);
