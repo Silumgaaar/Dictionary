@@ -24,7 +24,7 @@ public class Back implements Commander {
 
     @Override
     public void execute() {
-        Map<String,String> info = config.getDirectory().view();
+        Map<String,String> info = config.getDirectory().getAll();
 
         StringBuilder s = new StringBuilder();
         for(String str : info.keySet()){
@@ -42,7 +42,7 @@ public class Back implements Commander {
         }
         DictionaryManager dictionaryManager = new Dictionary(config,choice);
         config.setDictionary(dictionaryManager);
-        for (Map.Entry<String,String> entry : config.getDictionary().view().entrySet()) {
+        for (Map.Entry<String,String> entry : config.getDictionary().getAll().entrySet()) {
             System.out.println(entry);
         }
         System.out.println(infoCommands.viewMenu());

@@ -46,7 +46,7 @@ public class Dictionary implements DictionaryManager {
         }
         return false;
     }
-    public Map<String,String> view(){
+    public Map<String,String> getAll(){
         Map<String,String> dictionary;
         dictionary = this.dictionary;
         return dictionary;

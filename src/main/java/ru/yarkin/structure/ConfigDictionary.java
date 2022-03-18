@@ -34,7 +34,7 @@ public class ConfigDictionary{
 
     private Map<String,String> createInfoDictionary(String name) {
         Map<String,String> infoDictionary = new HashMap<>();
-        String[] info =  directory.view().get(name).split(DELIMITER);
+        String[] info =  directory.getAll().get(name).split(DELIMITER);
 
         infoDictionary.put("rulesKey", info[0]);
         infoDictionary.put("rulesValue", info[1]);

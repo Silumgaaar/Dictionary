@@ -29,7 +29,7 @@ public class Directory implements DictionaryManager{
     }
 
     @Override
-    public Map<String, String> view() {
+    public Map<String, String> getAll() {
         return infoDictionaries;
     }
 

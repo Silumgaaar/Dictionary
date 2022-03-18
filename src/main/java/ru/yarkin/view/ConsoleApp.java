@@ -20,10 +20,10 @@ public class ConsoleApp {
 
     public void start(){
         Scanner scanner = new Scanner(System.in);
-        Commander commander = commands.get("Back");
+        Commander commander = commands.get(Commands.BACK.getName());
         commander.execute();
         String userChoice = "";
-        while (!userChoice.equals(commander.getInfo().getName())){
+        while (!userChoice.equals(Commands.EXIT.getName())){
             System.out.print(ENTER_COMMAND);
             userChoice = scanner.next();
 
