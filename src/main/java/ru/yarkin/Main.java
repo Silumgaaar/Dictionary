@@ -12,11 +12,11 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args){
-        List<Commander> listCommand = new ArrayList<>();
+
         DictionaryManager directory = new Directory();
         ConfigDictionary config = new ConfigDictionary(directory);
 
-
+        List<Commander> listCommand = new ArrayList<>();
         listCommand.add(new Add(config));
         listCommand.add(new Remove(config));
         listCommand.add(new Search(config));
