@@ -24,8 +24,10 @@ public class View implements Commander {
         viewDictionary(config.getDictionary().getAll());
     }
     private void viewDictionary(Map<String,String> dictionary){
+        StringBuilder stringBuilder = new StringBuilder();
         for (Map.Entry<String,String> entry : dictionary.entrySet()) {
-            System.out.println(entry);
+           stringBuilder.append(entry).append("\n");
         }
+        System.out.print(stringBuilder);
     }
 }
