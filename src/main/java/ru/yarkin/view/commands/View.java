@@ -1,10 +1,11 @@
 package ru.yarkin.view.commands;
 
+import org.springframework.stereotype.Component;
 import ru.yarkin.structure.ConfigDictionary;
 import ru.yarkin.view.Commands;
 
 import java.util.Map;
-
+@Component
 public class View implements Commander {
 
     private final Commands infoCommands = Commands.VIEW;

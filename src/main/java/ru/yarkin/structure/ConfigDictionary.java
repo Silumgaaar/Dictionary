@@ -1,10 +1,11 @@
 package ru.yarkin.structure;
 
+import org.springframework.stereotype.Component;
 import ru.yarkin.dictionarywork.DictionaryManager;
 
 import java.util.HashMap;
 import java.util.Map;
-
+@Component
 public class ConfigDictionary{
     private static final String DELIMITER = ",";
 
