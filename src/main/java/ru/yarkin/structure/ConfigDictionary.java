@@ -8,8 +8,8 @@ import java.util.Map;
 public class ConfigDictionary{
     private static final String DELIMITER = ",";
 
-    DictionaryManager dictionary;
-    DictionaryManager directory;
+    private DictionaryManager dictionary;
+    private final DictionaryManager directory;
 
 
     public ConfigDictionary(DictionaryManager directory){
