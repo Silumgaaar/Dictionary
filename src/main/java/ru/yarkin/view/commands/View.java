@@ -7,11 +7,10 @@ import java.util.Map;
 
 public class View implements Commander {
 
-    private final Commands infoCommands;
+    private final Commands infoCommands = Commands.VIEW;
     private final ConfigDictionary config;
 
     public View(ConfigDictionary config){
-        infoCommands = Commands.getCommandInfo("View");
         this.config = config;
     }
 

@@ -8,12 +8,11 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Back implements Commander {
-    private final Commands infoCommands;
+    private final Commands infoCommands = Commands.BACK;
     private static final String DICTIONARY_SELECTION = "Choose a dictionary: ";
     private static final String FILE_NOT_FOUND = "File not found in directory";
     private final ConfigDictionary config;
     public Back(ConfigDictionary config){
-        infoCommands = Commands.getCommandInfo("Back");
         this.config = config;
     }
 

@@ -9,11 +9,10 @@ public class Add implements Commander {
     private static final String ENTERING_A_TRANSLATION = "Enter translation: ";
     private static final String ADD_NEW_STRING = "Record successfully added";
     private static final String ERROR_CHECK = "The new pair does not meet the conditions of the dictionary";
-    private final Commands infoCommands;
+    private final Commands infoCommands = Commands.ADD;
     private final ConfigDictionary config;
 
     public Add(ConfigDictionary config){
-        infoCommands = Commands.getCommandInfo("Add");
         this.config = config;
     }
 
