@@ -1,10 +1,9 @@
 package ru.yarkin.view.commands;
 
-import org.springframework.stereotype.Component;
 import ru.yarkin.structure.ConfigDictionary;
 import ru.yarkin.view.Commands;
 import java.util.Scanner;
-@Component
+
 public class Add implements Commander {
     private static final String ENTERING_A_WORD = "Enter a word: ";
     private static final String ENTERING_A_TRANSLATION = "Enter translation: ";

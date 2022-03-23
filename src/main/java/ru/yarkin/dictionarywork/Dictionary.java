@@ -1,8 +1,6 @@
 package ru.yarkin.dictionarywork;
 
-
 import ru.yarkin.structure.ConfigDictionary;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -23,7 +21,6 @@ public class Dictionary implements DictionaryManager {
     private String rulesKey;
     private String rulesValue;
     private final ConfigDictionary config;
-
     public Dictionary(ConfigDictionary config, String name){
         this.config = config;
         createDictionary(name);

@@ -1,10 +1,9 @@
 package ru.yarkin.view.commands;
 
-import org.springframework.stereotype.Component;
 import ru.yarkin.structure.ConfigDictionary;
 import ru.yarkin.view.Commands;
 import java.util.Scanner;
-@Component
+
 public class Remove implements Commander {
 
     private static final String WORD_DELETE = "Word to delete: ";

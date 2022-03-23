@@ -1,13 +1,12 @@
 package ru.yarkin.view.commands;
 
-import org.springframework.stereotype.Component;
 import ru.yarkin.dictionarywork.Dictionary;
 import ru.yarkin.dictionarywork.DictionaryManager;
 import ru.yarkin.structure.ConfigDictionary;
 import ru.yarkin.view.Commands;
 import java.util.Map;
 import java.util.Scanner;
-@Component
+
 public class Back implements Commander {
     private final Commands infoCommands = Commands.BACK;
     private static final String DICTIONARY_SELECTION = "Choose a dictionary: ";
@@ -15,6 +14,7 @@ public class Back implements Commander {
     private final ConfigDictionary config;
     public Back(ConfigDictionary config){
         this.config = config;
+
     }
 
     @Override

@@ -1,12 +1,10 @@
 package ru.yarkin.view;
 
-import org.springframework.stereotype.Component;
 import ru.yarkin.view.commands.Commander;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
-@Component
+
 public class ConsoleApp {
     private static final String COMMAND_NOT_FOUND = "Command entered not found ";
     private static final String ENTER_COMMAND = "Enter a command: ";
@@ -18,6 +16,7 @@ public class ConsoleApp {
             commands.put(command.getInfo().getName(),command);
         }
     }
+
 
     public void start(){
         Scanner scanner = new Scanner(System.in);
