@@ -1,7 +1,6 @@
 package ru.yarkin.structure;
 
 import ru.yarkin.dictionarywork.DictionaryManager;
-
 import java.util.HashMap;
 import java.util.Map;
 

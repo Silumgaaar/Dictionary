@@ -1,5 +1,6 @@
 package ru.yarkin.view.commands;
 
+import ru.yarkin.exception.DictionaryNotFoundException;
 import ru.yarkin.structure.ConfigDictionary;
 import ru.yarkin.view.Commands;
 import java.util.Scanner;
@@ -9,6 +10,7 @@ public class Add implements Commander {
     private static final String ENTERING_A_TRANSLATION = "Enter translation: ";
     private static final String ADD_NEW_STRING = "Record successfully added";
     private static final String ERROR_CHECK = "The new pair does not meet the conditions of the dictionary";
+    private static final String FILE_NOT_FOUND = "File not found in directory";
     private final Commands infoCommands = Commands.ADD;
     private final ConfigDictionary config;
 
@@ -29,13 +31,15 @@ public class Add implements Commander {
         System.out.print(ENTERING_A_TRANSLATION);
         String newValue = scanner.next();
 
-
-        if(config.getDictionary().add(newKey, newValue)){
-            config.getDictionary().add(newKey, newValue);
-            System.out.println(ADD_NEW_STRING);
-        }
-        else {
-            System.out.println(ERROR_CHECK);
+        try {
+            if (config.getDictionary().add(newKey, newValue)) {
+                config.getDictionary().add(newKey, newValue);
+                System.out.println(ADD_NEW_STRING);
+            } else {
+                System.out.println(ERROR_CHECK);
+            }
+        }catch (DictionaryNotFoundException e){
+            System.out.println(FILE_NOT_FOUND);
         }
 
     }

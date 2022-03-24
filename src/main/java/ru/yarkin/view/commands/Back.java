@@ -2,6 +2,7 @@ package ru.yarkin.view.commands;
 
 import ru.yarkin.dictionarywork.Dictionary;
 import ru.yarkin.dictionarywork.DictionaryManager;
+import ru.yarkin.exception.DictionaryNotFoundException;
 import ru.yarkin.structure.ConfigDictionary;
 import ru.yarkin.view.Commands;
 import java.util.Map;
@@ -22,7 +23,7 @@ public class Back implements Commander {
     }
 
     @Override
-    public void execute() {
+    public void execute(){
         Map<String,String> info = config.getDirectory().getAll();
 
         StringBuilder s = new StringBuilder();
@@ -31,20 +32,30 @@ public class Back implements Commander {
         }
 
         System.out.print(s + DICTIONARY_SELECTION);
+        boolean check = false;
+        while(!check) {
+            Scanner scanner = new Scanner(System.in);
 
-        Scanner scanner = new Scanner(System.in);
+            String choice = scanner.next();
+            while (!check(info, choice)) {
+                System.out.print(FILE_NOT_FOUND + "\n" + DICTIONARY_SELECTION);
+                choice = scanner.next();
+            }
 
-        String choice = scanner.next();
-        while (!check(info, choice)){
-            System.out.print(FILE_NOT_FOUND + "\n" + DICTIONARY_SELECTION);
-            choice = scanner.next();
+            try {
+                DictionaryManager dictionaryManager = new Dictionary(config, choice);
+                config.setDictionary(dictionaryManager);
+
+
+                for (Map.Entry<String, String> entry : config.getDictionary().getAll().entrySet()) {
+                    System.out.println(entry);
+                }
+                check = true;
+                System.out.println(infoCommands.viewMenu());
+            } catch (DictionaryNotFoundException e) {
+                System.out.println(FILE_NOT_FOUND);
+            }
         }
-        DictionaryManager dictionaryManager = new Dictionary(config,choice);
-        config.setDictionary(dictionaryManager);
-        for (Map.Entry<String,String> entry : config.getDictionary().getAll().entrySet()) {
-            System.out.println(entry);
-        }
-        System.out.println(infoCommands.viewMenu());
     }
 
 
