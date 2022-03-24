@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -45,9 +46,7 @@ public class Dictionary implements DictionaryManager {
         return false;
     }
     public Map<String,String> getAll(){
-        Map<String,String> dictionary;
-        dictionary = this.dictionary;
-        return dictionary;
+        return cloneMap();
     }
 
     public String search(String key){
@@ -100,5 +99,13 @@ public class Dictionary implements DictionaryManager {
         }catch (IOException e){
             throw new DictionaryNotFoundException(e.getMessage());
         }
+    }
+    private Map<String,String> cloneMap(){
+        Map<String,String> cloneMap = new HashMap<>();
+        Set<Map.Entry<String,String>> set = dictionary.entrySet();
+        for (Map.Entry<String,String> entry : set){
+            cloneMap.put(entry.getKey(), entry.getValue());
+        }
+        return cloneMap;
     }
 }
