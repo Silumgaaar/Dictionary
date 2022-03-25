@@ -17,6 +17,7 @@ import java.util.regex.Pattern;
 
 public class Dictionary implements DictionaryManager {
     private static final String DASH = "-";
+    private static final String DELIMITER = ",";
     private final Map<String,String> dictionary = new HashMap<>();
     private String path;
     private String rulesKey;
@@ -54,11 +55,12 @@ public class Dictionary implements DictionaryManager {
     }
 
     private void createDictionary(String name) throws DictionaryNotFoundException{
-        Map<String,String> infoDictionary = config.getInfoDictionary(name);
+        String infoDictionary = config.getInfoDictionary(name);
         if(!infoDictionary.isEmpty()) {
-            this.path = infoDictionary.get("patch");
-            this.rulesKey = infoDictionary.get("rulesKey");
-            this.rulesValue = infoDictionary.get("rulesValue");
+            String[] info = infoDictionary.split(DELIMITER);
+            this.path = info[2];
+            this.rulesKey = info[0];
+            this.rulesValue = info[1];
             readInFile(path);
         }
     }

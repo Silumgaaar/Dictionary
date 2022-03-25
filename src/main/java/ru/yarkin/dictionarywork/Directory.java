@@ -35,7 +35,7 @@ public class Directory implements DictionaryManager{
 
     @Override
     public String search(String key) {
-        return null;
+        return infoDictionaries.get(key);
     }
 
 
