@@ -21,14 +21,6 @@ public enum Commands {
     private String getTitle(){
         return title;
     }
-    public static Commands getCommandInfo(String command){
-        for(Commands infoCommands : values()){
-            if(infoCommands.getName().equals(command)){
-                return infoCommands;
-            }
-        }
-        return null;
-    }
     public StringBuilder viewMenu(){
         StringBuilder stringBuilder = new StringBuilder();
         for(Commands infoCommands : values()) {

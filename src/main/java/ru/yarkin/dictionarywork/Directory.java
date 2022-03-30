@@ -12,13 +12,13 @@ import java.util.Map;
 @Component
 public class Directory implements DictionaryManager{
     private static final String LIBRARY = "src/main/resources/Library.txt";
-    private static final String ERROR_DIRECTORY = "Dictionary list file not found ";
     private static final String DELIMITER = "'";
+    private static final String ERROR_DIRECTORY = "Dictionary list file not found ";
 
     private final Map<String,String> infoDictionaries = new HashMap<>();
 
     public Directory(){
-        filesDirectory();
+            filesDirectory();
     }
 
     @Override
@@ -37,7 +37,7 @@ public class Directory implements DictionaryManager{
 
     @Override
     public String search(String key) {
-        return null;
+        return infoDictionaries.get(key);
     }
 
 
@@ -51,6 +51,7 @@ public class Directory implements DictionaryManager{
             }
         } catch (IOException e){
             System.out.println(ERROR_DIRECTORY);
+            System.exit(1);
         }
     }
 
