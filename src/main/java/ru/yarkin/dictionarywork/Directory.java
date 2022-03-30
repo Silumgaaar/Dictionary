@@ -1,7 +1,5 @@
 package ru.yarkin.dictionarywork;
 
-import org.springframework.stereotype.Component;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -9,7 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
-@Component
+
 public class Directory implements DictionaryManager{
     private static final String LIBRARY = "src/main/resources/Library.txt";
     private static final String DELIMITER = "'";

@@ -1,7 +1,6 @@
 package ru.yarkin.dictionarywork;
 
 import ru.yarkin.exception.DictionaryNotFoundException;
-
 import java.util.Map;
 
 public interface DictionaryManager {
