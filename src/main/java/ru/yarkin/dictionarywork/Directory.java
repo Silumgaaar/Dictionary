@@ -1,6 +1,5 @@
 package ru.yarkin.dictionarywork;
 
-import ru.yarkin.exception.LibraryDictionariesNotFoundException;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -12,10 +11,11 @@ import java.util.Map;
 public class Directory implements DictionaryManager{
     private static final String LIBRARY = "src/main/resources/Library.txt";
     private static final String DELIMITER = "'";
+    private static final String ERROR_DIRECTORY = "Dictionary list file not found ";
 
     private final Map<String,String> infoDictionaries = new HashMap<>();
 
-    public Directory() throws LibraryDictionariesNotFoundException{
+    public Directory(){
             filesDirectory();
     }
 
@@ -39,7 +39,7 @@ public class Directory implements DictionaryManager{
     }
 
 
-    private void filesDirectory() throws LibraryDictionariesNotFoundException{
+    private void filesDirectory(){
         try {
             File file = new File(LIBRARY);
             Path path = file.toPath();
@@ -48,7 +48,8 @@ public class Directory implements DictionaryManager{
                 infoDictionaries.put(info[0],info[1]);
             }
         } catch (IOException e){
-            throw new LibraryDictionariesNotFoundException(e.getMessage());
+            System.out.println(ERROR_DIRECTORY);
+            System.exit(1);
         }
     }
 

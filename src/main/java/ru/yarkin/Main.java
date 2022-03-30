@@ -3,7 +3,6 @@ package ru.yarkin;
 
 import ru.yarkin.dictionarywork.DictionaryManager;
 import ru.yarkin.dictionarywork.Directory;
-import ru.yarkin.exception.LibraryDictionariesNotFoundException;
 import ru.yarkin.structure.ConfigDictionary;
 import ru.yarkin.view.ConsoleApp;
 import ru.yarkin.view.commands.*;
@@ -11,9 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    private static final String ERROR_DIRECTORY = "Dictionary list file not found ";
     public static void main(String[] args){
-        try {
             DictionaryManager directory = new Directory();
             ConfigDictionary config = new ConfigDictionary(directory);
 
@@ -28,9 +25,6 @@ public class Main {
             ConsoleApp console = new ConsoleApp(listCommand);
 
             console.start();
-        }catch (LibraryDictionariesNotFoundException e){
-            e.printStackTrace();
-            System.out.println(ERROR_DIRECTORY);
-        }
+
     }
 }
