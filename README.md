@@ -1,4 +1,4 @@
 # Dictionary
 Postgres
-user - user
-password - user
+|user - user|
+|password - user|
