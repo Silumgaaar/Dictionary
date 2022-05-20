@@ -1,0 +1,51 @@
+13-May-2022 10:39:31.894 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/9.0.60
+13-May-2022 10:39:31.896 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Mar 9 2022 14:52:25 UTC
+13-May-2022 10:39:31.897 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 9.0.60.0
+13-May-2022 10:39:31.897 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Windows 10
+13-May-2022 10:39:31.898 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Версия ОС:             10.0
+13-May-2022 10:39:31.900 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Архитектура:           amd64
+13-May-2022 10:39:31.900 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             C:\Program Files\Java\jdk-17.0.1
+13-May-2022 10:39:31.901 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Версия JVM:            17.0.1+12-LTS-39
+13-May-2022 10:39:31.901 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+13-May-2022 10:39:31.901 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         C:\Users\ayarkin\Desktop\tom\apache-tomcat-9.0.60
+13-May-2022 10:39:31.901 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         C:\Users\ayarkin\Desktop\tom\apache-tomcat-9.0.60
+13-May-2022 10:39:31.906 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+13-May-2022 10:39:31.906 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+13-May-2022 10:39:31.906 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util=ALL-UNNAMED
+13-May-2022 10:39:31.906 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+13-May-2022 10:39:31.906 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+13-May-2022 10:39:31.907 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=C:\Users\ayarkin\Desktop\tom\apache-tomcat-9.0.60\conf\logging.properties
+13-May-2022 10:39:31.910 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+13-May-2022 10:39:31.910 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+13-May-2022 10:39:31.911 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+13-May-2022 10:39:31.911 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dignore.endorsed.dirs=
+13-May-2022 10:39:31.911 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=C:\Users\ayarkin\Desktop\tom\apache-tomcat-9.0.60
+13-May-2022 10:39:31.911 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=C:\Users\ayarkin\Desktop\tom\apache-tomcat-9.0.60
+13-May-2022 10:39:31.912 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=C:\Users\ayarkin\Desktop\tom\apache-tomcat-9.0.60\temp
+13-May-2022 10:39:31.915 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The Apache Tomcat Native library which allows using OpenSSL was not found on the java.library.path: [C:\Program Files\Java\jdk-17.0.1\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\PuTTY\;"-maven-4.0.0\bin;C:\Program Files\Java\jdk-17.0.1\bin";C:\Users\ayarkin\AppData\Local\Microsoft\WindowsApps;C:\Users\ayarkin\AppData\Local\GitHubDesktop\bin;C:\Program Files\JetBrains\IntelliJ IDEA 2021.3.2\bin;;;.]
+13-May-2022 10:39:32.100 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+13-May-2022 10:39:32.117 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [371] milliseconds
+13-May-2022 10:39:32.156 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+13-May-2022 10:39:32.156 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/9.0.60]
+13-May-2022 10:39:32.174 INFO [main] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [C:\Users\ayarkin\Desktop\tom\apache-tomcat-9.0.60\webapps\MVC-spring.war]
+13-May-2022 10:39:35.318 INFO [main] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+13-May-2022 10:39:40.695 INFO [main] liquibase.database.null Set default schema name to public
+13-May-2022 10:39:40.798 INFO [main] liquibase.lockservice.null Successfully acquired change log lock
+13-May-2022 10:39:40.807 INFO [main] liquibase.servicelocator.null Cannot load service: liquibase.parser.ChangeLogParser: liquibase.parser.core.json.JsonChangeLogParser Unable to get public no-arg constructor
+13-May-2022 10:39:40.813 INFO [main] liquibase.servicelocator.null Cannot load service: liquibase.parser.ChangeLogParser: liquibase.parser.core.yaml.YamlChangeLogParser Unable to get public no-arg constructor
+13-May-2022 10:39:41.264 INFO [main] liquibase.changelog.null Reading from public.databasechangelog
+13-May-2022 10:39:41.318 INFO [main] liquibase.servicelocator.null Cannot load service: liquibase.hub.HubService: Provider liquibase.hub.core.StandardHubService could not be instantiated
+13-May-2022 10:39:41.325 INFO [main] liquibase.lockservice.null Successfully released change log lock
+13-May-2022 10:39:41.346 INFO [main] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [C:\Users\ayarkin\Desktop\tom\apache-tomcat-9.0.60\webapps\MVC-spring.war] has finished in [9 171] ms
+13-May-2022 10:39:41.347 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Установка веб приложения в папку [C:\Users\ayarkin\Desktop\tom\apache-tomcat-9.0.60\webapps\docs]
+13-May-2022 10:39:41.372 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\ayarkin\Desktop\tom\apache-tomcat-9.0.60\webapps\docs] has finished in [25] ms
+13-May-2022 10:39:41.373 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Установка веб приложения в папку [C:\Users\ayarkin\Desktop\tom\apache-tomcat-9.0.60\webapps\examples]
+13-May-2022 10:39:41.801 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\ayarkin\Desktop\tom\apache-tomcat-9.0.60\webapps\examples] has finished in [428] ms
+13-May-2022 10:39:41.802 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Установка веб приложения в папку [C:\Users\ayarkin\Desktop\tom\apache-tomcat-9.0.60\webapps\host-manager]
+13-May-2022 10:39:41.840 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\ayarkin\Desktop\tom\apache-tomcat-9.0.60\webapps\host-manager] has finished in [38] ms
+13-May-2022 10:39:41.841 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Установка веб приложения в папку [C:\Users\ayarkin\Desktop\tom\apache-tomcat-9.0.60\webapps\manager]
+13-May-2022 10:39:41.880 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\ayarkin\Desktop\tom\apache-tomcat-9.0.60\webapps\manager] has finished in [39] ms
+13-May-2022 10:39:41.880 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Установка веб приложения в папку [C:\Users\ayarkin\Desktop\tom\apache-tomcat-9.0.60\webapps\ROOT]
+13-May-2022 10:39:41.901 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\ayarkin\Desktop\tom\apache-tomcat-9.0.60\webapps\ROOT] has finished in [21] ms
+13-May-2022 10:39:41.904 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+13-May-2022 10:39:41.922 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [9804] milliseconds
