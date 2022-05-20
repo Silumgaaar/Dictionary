@@ -1,0 +1,456 @@
+{
+	"info": {
+		"_postman_id": "3c4230fd-0608-4b04-8027-16521fe3f10c",
+		"name": "Rest dictionary",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get запросы",
+			"item": [
+				{
+					"name": "Get all pair dictionary",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/MVC-spring/library/2/word",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"MVC-spring",
+								"library",
+								"2",
+								"word"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find all dictionaries",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/MVC-spring/library",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"MVC-spring",
+								"library"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find dictionary by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/MVC-spring/library/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"MVC-spring",
+								"library",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find word by key",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/MVC-spring/library/2/word/twoq",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"MVC-spring",
+								"library",
+								"2",
+								"word",
+								"twoq"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find dictionary by id(Not found)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/MVC-spring/library/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"MVC-spring",
+								"library",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find word by key(Not found)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/MVC-spring/library/2/word/qweasdas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"MVC-spring",
+								"library",
+								"2",
+								"word",
+								"qweasdas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find word by key(Not dictionary)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/MVC-spring/library/3/word/twoq",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"MVC-spring",
+								"library",
+								"3",
+								"word",
+								"twoq"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Post запросы",
+			"item": [
+				{
+					"name": "Add new pair",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"key\":\"vfvf\",\r\n    \"value\":\"ваке\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/MVC-spring/library/2/word",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"MVC-spring",
+								"library",
+								"2",
+								"word"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new pair(Not dictionary)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"key\":\"vfvf\",\r\n    \"value\":\"ваке\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/MVC-spring/library/3/word",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"MVC-spring",
+								"library",
+								"3",
+								"word"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new pair(Bad key)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"key\":\"lkjjh\",\r\n    \"value\":\"фыжд\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/MVC-spring/library/2/word",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"MVC-spring",
+								"library",
+								"2",
+								"word"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new pair(Bad value)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"key\":\"oopp\",\r\n    \"value\":\"чсчссч\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/MVC-spring/library/2/word",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"MVC-spring",
+								"library",
+								"2",
+								"word"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new pair(Bad value, bad key)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"key\":\"oopp2\",\r\n    \"value\":\"чсчссч\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/MVC-spring/library/2/word",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"MVC-spring",
+								"library",
+								"2",
+								"word"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new pair(unique)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"key\":\"thre\",\r\n    \"value\":\"трий\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/MVC-spring/library/2/word",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"MVC-spring",
+								"library",
+								"2",
+								"word"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delete запросы",
+			"item": [
+				{
+					"name": "Delete pair by key",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"key\":\"vfvf\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/MVC-spring/library/2/word",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"MVC-spring",
+								"library",
+								"2",
+								"word"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete pair by key(Not dictionary)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"key\":\"vfvf\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/MVC-spring/library/3/word",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"MVC-spring",
+								"library",
+								"3",
+								"word"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete pair by key(Not found)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"key\":\"asdasda\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/MVC-spring/library/2/word",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"MVC-spring",
+								"library",
+								"2",
+								"word"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
