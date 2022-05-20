@@ -4,3 +4,7 @@ Postgres
 |password - user|
 
 name database - library
+
+# Tomcat
+name - user
+password - password
