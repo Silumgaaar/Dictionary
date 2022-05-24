@@ -8,16 +8,16 @@
 <body>
 <h1>Добавить запись</h1>
 <form action="#" th:action="@{/dictionary/add}" th:object="${form}" method="post" accept-charset="UTF-8">
-    <input name="id" type="hidden" th:valuetype="Long" th:value="${name.getId()}">
-    <p th:text="${name.getName()}">Словарь</p>
+    <input name="id" type="hidden" th:valuetype="Long" th:value="${id}">
+    <p th:text="${name}">Словарь</p>
 
     <label>
-        <div th:text="${name.getSourceLanguageId().getLanguage()}"></div>
+        <div th:text="${sourceRule}"></div>
         <input type="text" th:field="*{key}" />
     </label>
 
     <label>
-        <div th:text="${name.getTargetLanguageId().getLanguage()}"></div>
+        <div th:text="${targetRule}"></div>
         <input type="text" th:field="*{value}" />
     </label></p>
 
@@ -28,7 +28,7 @@
 </form>
 
 
-<a th:href="@{/dictionary(id = ${name.getId()})}">Вернутся в меню словаря</a><br/>
+<a th:href="@{/dictionary(id = ${id})}">Вернутся в меню словаря</a><br/>
 <p>Комментарий<Br>
 
 <form>

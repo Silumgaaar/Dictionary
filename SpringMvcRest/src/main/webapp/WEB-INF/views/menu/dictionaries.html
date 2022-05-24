@@ -6,7 +6,7 @@
 </head>
 <body>
 <div th:each="menu : ${menus}">
-    <a th:href="@{/dictionary(id = ${menu.getId()})}" th:text="${menu.getName()}">Dictionary</a>
+    <a th:href="@{/dictionary(id = ${menu.getKey()})}" th:text="${menu.getValue()}">Dictionary</a>
 </div>
 
 </body>

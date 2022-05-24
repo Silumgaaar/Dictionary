@@ -2,25 +2,18 @@ package ru.yarkin.controllers.rest;
 
 import org.springframework.web.bind.annotation.*;
 
-import ru.yarkin.models.demobase.Libraries;
-import ru.yarkin.models.demobase.Words;
 import ru.yarkin.models.form.FormAdd;
 import ru.yarkin.models.form.FormDelete;
 import ru.yarkin.models.form.FormSearch;
 import ru.yarkin.service.MenuDictionariesService;
 import ru.yarkin.service.MenuDictionaryService;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/library")
 public class DictionaryRestController {
-
-    private static final String DICTIONARY_NOT_FOUND = "Dictionary not found";
-    private static final String PAIR_NOT_FOUND = "Pair not found";
 
     private final MenuDictionaryService menuDictionaryService;
     private final MenuDictionariesService menuDictionariesService;
@@ -30,67 +23,34 @@ public class DictionaryRestController {
         this.menuDictionariesService = menuDictionariesService;
     }
 
-    @RequestMapping(value = "",
-            method = RequestMethod.GET)
-    public List<String> findDictionaries(){
-        List<String> dictionaries = new ArrayList<>();
-        for(Libraries dictionary : menuDictionariesService.getStartMenu()){
-            dictionaries.add(dictionary.getName());
-        }
-        return dictionaries;
+    @GetMapping
+    public Map<Long, String> findDictionaries(){
+        return menuDictionariesService.getStartMenu();
     }
 
-    @RequestMapping(value = "/{id}",
-            method = RequestMethod.GET)
+    @GetMapping(value = "/{id}")
     public String findDictionary(@PathVariable("id") Long id) {
-        try {
-            return menuDictionaryService.findDictionaryById(id).getName();
-        }catch (NullPointerException e) {
-            return DICTIONARY_NOT_FOUND;
-        }
+        return menuDictionaryService.findDictionaryById(id);
     }
 
-
-    @RequestMapping(value = "/{id}/word",
-            method = RequestMethod.GET)
+    @GetMapping(value = "/{id}/word")
     public Map<String, String> findAllPair(@PathVariable("id") Long id){
-        Map<Words,Words> map = menuDictionaryService.findAllPairDictionary(id);
-        Map<String,String> result = new HashMap<>();
-
-        for(Map.Entry<Words, Words> entry: map.entrySet()) {
-            Words key = entry.getKey();
-            Words value = entry.getValue();
-            result.put(key.getValue(), value.getValue());
-        }
-
-        return result;
+        return menuDictionaryService.findAllPairDictionary(id);
     }
 
-    @RequestMapping(value = "/{id}/word/{value}",
-            method = RequestMethod.GET)
-    public List<String> findWord(@PathVariable("id") Long id, @PathVariable("value") String value ){
-        FormSearch formSearch = new FormSearch();
-        formSearch.setId(id);
-        formSearch.setKey(value);
-
-        List<String> result = new ArrayList<>();
-        try {
-            result.add(value + " - " + menuDictionaryService.searchPair(formSearch).getTargetWordsId().getValue());
-            return result;
-        } catch (Exception e){
-            result.add(PAIR_NOT_FOUND);
-            return result;
-        }
+    @PutMapping(value = "/{id}/word")
+    public List<String> findWord(@PathVariable("id") Long id, @RequestBody FormSearch formSearch){  // ПЕРЕДЕЛАТЬ!
+        return menuDictionaryService.searchPair(id, formSearch.getKey());
     }
+
     @PostMapping(value = "/{id}/word")
     public List<String> createPair(@RequestBody FormAdd formAdd, @PathVariable("id") Long id){
-        formAdd.setId(id);
-        return menuDictionaryService.addPair(formAdd);
+        return menuDictionaryService.addPair(id, formAdd.getKey(), formAdd.getValue());
     }
+
     @DeleteMapping(value = "/{id}/word")
     public List<String> deletePair(@RequestBody FormDelete formDelete, @PathVariable("id") Long id){
-        formDelete.setId(id);
-        return menuDictionaryService.deletePair(formDelete);
+        return menuDictionaryService.deletePair(id,formDelete.getKey());
     }
 
 

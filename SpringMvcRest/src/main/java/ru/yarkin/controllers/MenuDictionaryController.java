@@ -11,15 +11,9 @@ import ru.yarkin.models.form.FormDelete;
 import ru.yarkin.models.form.FormSearch;
 import ru.yarkin.service.MenuDictionaryService;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
 @RequestMapping("/dictionary")
 public class MenuDictionaryController {
-    private static final String SUCCESSFULLY_FOUND = "Пара успешно найдена";
-    private static final String NOT_PAIR = "Пара не найдена";
-
     private final MenuDictionaryService menuDictionaryService;
 
     @Autowired
@@ -35,22 +29,28 @@ public class MenuDictionaryController {
 
     @GetMapping("/add")
     public String add(@RequestParam("id") Long id, Model model){
+        model.addAttribute("id", id);
         model.addAttribute("form", new FormAdd());
         model.addAttribute("name", menuDictionaryService.findDictionaryById(id));
+        model.addAttribute("sourceRule", menuDictionaryService.getSourceLanguageName(id));
+        model.addAttribute("targetRule", menuDictionaryService.getTargetLanguageName(id));
 
         return "menu/command/add";
     }
     @PostMapping("/add")
-    public String addPair(@ModelAttribute FormAdd formAdd,
-                          Model model){
-        List<String> result = menuDictionaryService.addPair(formAdd);
+    public String addPair(@ModelAttribute FormAdd formAdd, Model model){
+
+        model.addAttribute("id",formAdd.getId());
         model.addAttribute("name", menuDictionaryService.findDictionaryById(formAdd.getId()));
-        model.addAttribute("result", result);
+        model.addAttribute("result", menuDictionaryService.addPair(formAdd.getId(),formAdd.getKey(),formAdd.getValue()));
         model.addAttribute("form", formAdd);
+        model.addAttribute("sourceRule", menuDictionaryService.getSourceLanguageName(formAdd.getId()));
+        model.addAttribute("targetRule", menuDictionaryService.getTargetLanguageName(formAdd.getId()));
         return "menu/command/add";
     }
     @GetMapping("/delete")
     public String delete(@RequestParam(value = "id") Long id, Model model){
+        model.addAttribute("id", id);
         model.addAttribute("form", new FormDelete());
         model.addAttribute("name", menuDictionaryService.findDictionaryById(id));
         return "menu/command/delete";
@@ -58,15 +58,10 @@ public class MenuDictionaryController {
 
 
     @PostMapping("/delete")
-    public String delete(@ModelAttribute FormDelete formDelete,
-                         Model model){
-
-        List<String> answer = new ArrayList<>();
-
-
-        answer = menuDictionaryService.deletePair(formDelete);
+    public String delete(@ModelAttribute FormDelete formDelete, Model model){
+        model.addAttribute("id", formDelete.getId());
         model.addAttribute("name", menuDictionaryService.findDictionaryById(formDelete.getId()));
-        model.addAttribute("answer", answer);
+        model.addAttribute("answer", menuDictionaryService.deletePair(formDelete.getId(),formDelete.getKey()));
         model.addAttribute("form", formDelete);
 
         return "menu/command/delete";
@@ -74,32 +69,25 @@ public class MenuDictionaryController {
 
     @GetMapping("/view")
     public String view(@RequestParam("id") Long id, Model model){
-        model.addAttribute("name", menuDictionaryService.findDictionaryById(id));
+        model.addAttribute("id", id);
         model.addAttribute("menus", menuDictionaryService.findAllPairDictionary(id));
         return "menu/command/view";
     }
 
     @GetMapping("/search")
     public String search(@RequestParam("id") Long id, Model model){
+        model.addAttribute("id", id);
         model.addAttribute("name", menuDictionaryService.findDictionaryById(id));
         model.addAttribute("form", new FormSearch());
         return "menu/command/search";
     }
     @GetMapping("/search/result")
-    public String search(@ModelAttribute FormSearch formSearch,
-                         Model model){
+    public String search(@ModelAttribute FormSearch formSearch, Model model){
+        model.addAttribute("id", formSearch.getId());
+        System.out.println(formSearch.getId());
         model.addAttribute("name", menuDictionaryService.findDictionaryById(formSearch.getId()));
         model.addAttribute("form", formSearch);
-        List<String> answer = new ArrayList<>();
-
-        try{
-            model.addAttribute("result", menuDictionaryService.searchPair(formSearch));
-            answer.add(SUCCESSFULLY_FOUND);
-         } catch (Exception e){
-            answer.add(NOT_PAIR);
-       }
-        model.addAttribute("answer", answer);
-
+        model.addAttribute("result", menuDictionaryService.searchPair(formSearch.getId(),formSearch.getKey()));
         return "menu/command/search";
     }
 }

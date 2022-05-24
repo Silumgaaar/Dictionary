@@ -51,4 +51,12 @@ public class Libraries {
     public void setTargetLanguageId(Languages targetLanguageId) {
         this.targetLanguageId = targetLanguageId;
     }
+
+    public Libraries(){
+
+    }
+    public Libraries(Languages sourceLanguageId, Languages targetLanguageId){
+        this.sourceLanguageId = sourceLanguageId;
+        this.targetLanguageId = targetLanguageId;
+    }
 }

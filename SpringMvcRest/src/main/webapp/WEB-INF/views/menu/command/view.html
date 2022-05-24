@@ -6,7 +6,7 @@
     <title>Dictionary Menu</title>
 </head>
 <body>
-<a th:href="@{/dictionary(id = ${name.getId()})}">Вернутся в меню словаря</a><br/>
+<a th:href="@{/dictionary(id = ${id})}">Вернутся в меню словаря</a><br/>
 
 <table>
     <colgroup>
@@ -16,7 +16,7 @@
     <tr><th>Key</th><th>Value</th></tr>
     <div th:each="menu : ${menus}">
 
-        <tr><td><div th:text="${menu.getKey().getValue()}"></div></td> <td><div th:text="${menu.getValue().getValue()}"></div></td></tr>
+        <tr><td><div th:text="${menu.getKey()}"></div></td> <td><div th:text="${menu.getValue()}"></div></td></tr>
     </div>
 </table>
 

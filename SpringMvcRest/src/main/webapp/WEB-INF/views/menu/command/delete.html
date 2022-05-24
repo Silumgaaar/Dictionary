@@ -7,15 +7,15 @@
 <body>
 <h1>Удаление записи</h1>
 <form action="#" th:action="@{/dictionary/delete}" th:object="${form}" method="post" accept-charset="UTF-8">
-    <input name="id" type="hidden" th:valuetype="Long" th:value="${name.getId()}">
-    <p th:text="${name.getName()}">Словарь</p>
+    <input name="id" type="hidden" th:valuetype="Long" th:value="${id}">
+    <p th:text="${name}">Словарь</p>
     <p>Ключ:<input type="text" th:field="*{key}" /></p>
 
     <button>Удалить</button>
 
 </form>
 
-<a th:href="@{/dictionary(id = ${name.getId()})}">Вернутся в меню словаря</a><br/>
+<a th:href="@{/dictionary(id = ${id})}">Вернутся в меню словаря</a><br/>
 <p>Комментарий<Br>
 
 <form>
