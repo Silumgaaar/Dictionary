@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  lang="ru" xml:lang="ru">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>Dictionary Menu</title>
+</head>
+<body>
+<a th:href="@{/dictionary(id = ${id})}">Вернутся в меню словаря</a><br/>
+
+<table>
+    <colgroup>
+        <col span="1" style="background:Khaki"><!-- С помощью этой конструкции задаем цвет фона для первых двух столбцов таблицы-->
+        <col style="background-color:LightCyan"><!-- Задаем цвет фона для следующего (одного) столбца таблицы-->
+    </colgroup>
+    <tr><th>Key</th><th>Value</th></tr>
+    <div th:each="menu : ${menus}">
+
+        <tr><td><div th:text="${menu.getKey()}"></div></td> <td><div th:text="${menu.getValue()}"></div></td></tr>
+    </div>
+</table>
+
+</body>
+</html>

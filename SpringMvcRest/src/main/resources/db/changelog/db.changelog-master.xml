@@ -1,0 +1,132 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.6.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <changeSet author="ayarkin (generated)" id="1652359881547-1">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="dictionaries_data_id_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="ayarkin (generated)" id="1652359881547-2">
+        <createTable tableName="languages">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="languages_pkey"/>
+            </column>
+            <column name="language" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="ayarkin (generated)" id="1652359881547-3">
+        <createTable tableName="libraries">
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="source_language_id" type="BIGINT">
+                <constraints nullable="false"
+                foreignKeyName="fk_source_language_id"
+                references="languages(id)"/>
+            </column>
+            <column name="target_language_id" type="BIGINT">
+                <constraints nullable="false"
+                foreignKeyName="fk_target_language_id"
+                references="languages(id)"/>
+            </column>
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="libraries_pkey"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="ayarkin (generated)" id="1652359881547-4">
+        <createTable tableName="rules">
+            <column name="rule" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="language_id" type="BIGINT">
+                <constraints nullable="false"
+                foreignKeyName="fk_language_id"
+                references="languages(id)"/>
+            </column>
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="rules_pkey"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="ayarkin (generated)" id="1652359881547-6">
+        <createTable tableName="words">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="words_pkey"/>
+            </column>
+            <column name="value" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="language_id" type="BIGINT">
+                <constraints nullable="false"
+                             foreignKeyName="fk_language_id"
+                             references="languages(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="ayarkin (generated)" id="1652359881547-5">
+        <createTable tableName="translate">
+            <column name="source_word_id" type="BIGINT">
+                <constraints nullable="false"
+                foreignKeyName="fk_source_word_id"
+                references="words(id)"/>
+            </column>
+            <column name="source_language_id" type="BIGINT">
+                <constraints nullable="false"
+                foreignKeyName="fk_source_language_id"
+                references="languages(id)"/>
+            </column>
+            <column name="target_word_id" type="BIGINT">
+                <constraints nullable="false"
+                foreignKeyName="fk_target_word_id"
+                references="words(id)"/>
+            </column>
+            <column name="target_language_id" type="BIGINT">
+                <constraints nullable="false"
+                foreignKeyName="fk_targetLanguage_id"
+                references="languages(id)"/>
+            </column>
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="translate_pkey"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="ayarkin (generated)" id="1652359881547-7">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="data/languages.csv" quotchar="&quot;" separator="," tableName="languages">
+            <column header="id" name="id" type="NUMERIC"/>
+            <column header="language" name="language" type="STRING"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="ayarkin (generated)" id="1652359881547-8">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="data/libraries.csv" quotchar="&quot;" separator="," tableName="libraries">
+            <column header="name" name="name" type="STRING"/>
+            <column header="source_language_id" name="source_language_id" type="NUMERIC"/>
+            <column header="target_language_id" name="target_language_id" type="NUMERIC"/>
+            <column header="id" name="id" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="ayarkin (generated)" id="1652359881547-9">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="data/rules.csv" quotchar="&quot;" separator="," tableName="rules">
+            <column header="rule" name="rule" type="STRING"/>
+            <column header="language_id" name="language_id" type="NUMERIC"/>
+            <column header="id" name="id" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="ayarkin (generated)" id="1652359881547-11">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="data/words.csv" quotchar="&quot;" separator="," tableName="words">
+            <column header="id" name="id" type="NUMERIC"/>
+            <column header="value" name="value" type="STRING"/>
+            <column header="language_id" name="language_id" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="ayarkin (generated)" id="1652359881547-10">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="data/translate.csv" quotchar="&quot;" separator="," tableName="translate">
+            <column header="source_word_id" name="source_word_id" type="NUMERIC"/>
+            <column header="source_language_id" name="source_language_id" type="NUMERIC"/>
+            <column header="target_word_id" name="target_word_id" type="NUMERIC"/>
+            <column header="target_language_id" name="target_language_id" type="NUMERIC"/>
+            <column header="id" name="id" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+
+</databaseChangeLog>

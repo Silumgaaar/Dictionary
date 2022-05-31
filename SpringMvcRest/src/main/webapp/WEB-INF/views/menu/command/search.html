@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+</head>
+<body>
+<h1>Поиск записи</h1>
+<form action="#" th:action="@{/dictionary/search/result}" th:object="${form}" method="get" accept-charset="UTF-8">
+    <input name="id" type="hidden" th:valuetype="Long" th:value="${id}">
+    <p th:text="${name}">Словарь</p>
+    <p>Ключ:<input type="text" th:field="*{key}" /></p>
+
+    <button>Поиск</button>
+
+</form>
+
+<a th:href="@{/dictionary(id = ${id})}">Вернутся в меню словаря</a><br/>
+<p>Комментарий<Br>
+
+<form>
+    <label>
+        <div th:each="answer : ${result}">
+            <textarea class="form-control input-sm" rows="2" th:text="${answer}"></textarea>
+        </div>
+    </label>
+</form>
+
+<!--<table>-->
+<!--    <colgroup>-->
+<!--        <col span="1" style="background:Khaki">&lt;!&ndash; С помощью этой конструкции задаем цвет фона для первых двух столбцов таблицы&ndash;&gt;-->
+<!--        <col style="background-color:LightCyan">&lt;!&ndash; Задаем цвет фона для следующего (одного) столбца таблицы&ndash;&gt;-->
+<!--    </colgroup>-->
+<!--    <tr><th>Key</th><th>Value</th></tr>-->
+<!--        <tr><td><div th:text="${result.getSourceWordsId().getValue()}"></div></td> <td><div th:text="${result.getTargetWordsId().getValue()}"></div></td></tr>-->
+<!--</table>-->
+<!--${result.getSourceWordsId().getValue()}  ${result.getTargetWordsId().getValue()}-->
+
+</body>
+</html>
