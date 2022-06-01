@@ -3,6 +3,7 @@ package ru.yarkin.dao;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
+import ru.yarkin.models.demobase.Languages;
 import ru.yarkin.models.demobase.Libraries;
 
 import javax.persistence.NoResultException;
@@ -51,12 +52,12 @@ public class LibrariesDao extends SessionUtil{
             return DICTIONARY_NOT_FOUND;
         }
     }
-    public String findSourceIdLanguage(Long id){
+    public Languages findSourceIdLanguage(Long id){
         Libraries libraries = findDictionaryById(id);
-        return libraries.getSourceLanguageId().getLanguage();
+        return libraries.getSourceLanguageId();
     }
-    public String findTargetIdLanguage(Long id){
+    public Languages findTargetIdLanguage(Long id){
         Libraries libraries = findDictionaryById(id);
-        return libraries.getTargetLanguageId().getLanguage();
+        return libraries.getTargetLanguageId();
     }
 }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
 import ru.yarkin.dao.LibrariesDao;
+import ru.yarkin.dao.RulesDao;
 import ru.yarkin.dao.TranslateDao;
 import ru.yarkin.service.validators.ValidationResult;
 import ru.yarkin.service.validators.Validator;
@@ -20,12 +21,14 @@ import java.util.Map;
 public class MenuDictionaryService {
     private final LibrariesDao librariesDao;
     private final TranslateDao translateDao;
+    private final RulesDao rulesDao;
     private static final String NOT_DICTIONARY = "Словарь не найден";
 
     @Autowired
-    public MenuDictionaryService(LibrariesDao librariesDao, TranslateDao translateDao){
+    public MenuDictionaryService(LibrariesDao librariesDao, TranslateDao translateDao, RulesDao rulesDao){
         this.librariesDao = librariesDao;
         this.translateDao = translateDao;
+        this.rulesDao = rulesDao;
     }
 
     public String findDictionaryById(Long id) {
@@ -36,10 +39,12 @@ public class MenuDictionaryService {
         List<String> resultList = new ArrayList<>();
 
         try {
-            String ruleSourceWord = librariesDao.findSourceIdLanguage(id);
-            String ruleTargetWord = librariesDao.findTargetIdLanguage(id);
 
-            Validator pairValidator = new ValidatorDictionary(ruleSourceWord, ruleTargetWord);
+            String sourceRule = rulesDao.getRule(librariesDao.findSourceIdLanguage(id)).getRule();
+            String targetRule = rulesDao.getRule(librariesDao.findTargetIdLanguage(id)).getRule();
+
+
+            Validator pairValidator = new ValidatorDictionary(sourceRule, targetRule);
             ValidationResult validationResult = pairValidator.checkAdd(key, value);
             resultList = validationResult.getErrorsValidation();
 
@@ -65,11 +70,12 @@ public class MenuDictionaryService {
     public List<String> searchPair(Long id, String key){
         return translateDao.search(id,key);
     }
+
     public String getSourceLanguageName(Long id){
-        return librariesDao.findSourceIdLanguage(id);
-    }
-    public String getTargetLanguageName(Long id){
-        return librariesDao.findTargetIdLanguage(id);
+        return librariesDao.findSourceIdLanguage(id).getLanguage();
     }
 
+    public String getTargetLanguageName(Long id){
+        return librariesDao.findTargetIdLanguage(id).getLanguage();
+    }
 }

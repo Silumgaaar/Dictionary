@@ -1,13 +1,8 @@
 package ru.yarkin.config;
 
-
-
-
 import liquibase.integration.spring.SpringLiquibase;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -17,19 +12,20 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
+
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-
 import javax.sql.DataSource;
-import java.util.List;
+
 
 @Configuration
 @EnableWebMvc
@@ -73,6 +69,7 @@ public class SpringConfig implements WebMvcConfigurer {
 
 
     }
+    
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
@@ -83,7 +80,7 @@ public class SpringConfig implements WebMvcConfigurer {
     public SpringLiquibase springLiquibase(DataSource dataSource) {
         SpringLiquibase springLiquibase = new SpringLiquibase();
         springLiquibase.setDataSource(dataSource);
-        springLiquibase.setChangeLog("db/changelog/db.changelog-master.xml");
+        springLiquibase.setChangeLog("db/changelog/1.0/db.changelog-master.xml");
         return springLiquibase;
     }
     @Bean
