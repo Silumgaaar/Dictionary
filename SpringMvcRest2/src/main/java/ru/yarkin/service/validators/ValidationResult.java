@@ -4,7 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ValidationResult {
+
     private List<String> errorsValidation;
+
+    public ValidationResult(List<String> errorsValidation) {
+        this.errorsValidation = errorsValidation;
+    }
 
     public List<String> getErrorsValidation() {
         if (errorsValidation == null) {
@@ -16,9 +21,4 @@ public class ValidationResult {
     public boolean isValid() {
         return getErrorsValidation().isEmpty();
     }
-
-    public ValidationResult(List<String> errorsValidation) {
-        this.errorsValidation = errorsValidation;
-    }
-
 }

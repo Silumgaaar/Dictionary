@@ -13,6 +13,7 @@ import java.util.List;
 
 @Repository
 public class TranslateDao extends AbstractHibernateDao<Translate> {
+    private static final String UNIQUE = "Пара уже существует";
 
     public TranslateDao() {
         setClazz(Translate.class);
@@ -42,33 +43,44 @@ public class TranslateDao extends AbstractHibernateDao<Translate> {
         for (Translate translate : foundPairs) {
             answer.add(translate.getSourceWord().getValue() + "-" + translate.getTargetWord().getValue());
         }
+        return answer;
+    }
+
+    public List<String> addPair(Pair pair) {
+        List<String> answer = new ArrayList<>();
+        if (unique(pair.getSourceWord().getId(), pair.getTargetWord().getId())) {
+            Translate translate = new Translate(pair.getSourceWord(), pair.getTargetWord());
+            create(translate);
+        } else {
+            answer.add(UNIQUE);
+        }
 
         return answer;
     }
 
-    public void addPair(Pair pair) {
-        Translate translate = new Translate(pair.getSourceWord(), pair.getTargetWord());
-        create(translate);
-
-    }
-
-    public void deletePair(Long sourceLanguage, Long targetLanguage, String key) {
+    public boolean deletePair(Long sourceLanguage, Long targetLanguage, String key) {
         Session session = getCurrentSession();
-        List<String> allPair = findAllPairsByDictionary(sourceLanguage, targetLanguage);
 
-        for (String pair : allPair) {
-            String[] arr = pair.split("-");
-            if (arr[0].equals(key)) {
-                var translate = session.createQuery("from Translate where sourceWord.value =: source and targetWord.language.id =: targetLanguageId", Translate.class)
-                        .setParameter("source", key)
-                        .setParameter("targetLanguageId", targetLanguage)
-                        .getResultList();
-                for (Translate pairForDelete : translate) {
-                    session.delete(pairForDelete);
-                }
-            }
+        var translate = session.createQuery("from Translate where sourceWord.value =: source and targetWord.language.id =: targetLanguageId and sourceWord.language.id =: sourceLanguage", Translate.class)
+                .setParameter("sourceLanguage", sourceLanguage)
+                .setParameter("source", key)
+                .setParameter("targetLanguageId", targetLanguage)
+                .getResultList();
+
+        if (translate.isEmpty()) {
+            return false;
         }
+
+        for (Translate pairForDelete : translate) {
+            session.delete(pairForDelete);
+        }
+        return true;
     }
 
-
+    private boolean unique(Long keyId, Long valueId) {
+        return getCurrentSession().createQuery("from Translate where sourceWord.id =: key and targetWord.id =: value")
+                .setParameter("key", keyId)
+                .setParameter("value", valueId)
+                .uniqueResult() == null;
+    }
 }

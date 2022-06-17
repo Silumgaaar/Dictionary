@@ -1,10 +1,10 @@
 package ru.yarkin.models.database;
 
-
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
 import org.hibernate.Hibernate;
 
 import javax.persistence.Entity;
@@ -23,6 +23,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "translate")
 public class Translate {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

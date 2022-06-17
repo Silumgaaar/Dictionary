@@ -15,7 +15,6 @@ import ru.yarkin.service.validators.ValidatorDictionary;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Service
 @Transactional
 public class DictionaryService {
@@ -53,14 +52,12 @@ public class DictionaryService {
                 dictionaries.add(dictionary);
             }
         }
-
         return dictionaries;
     }
 
     public List<String> findAllPairsDictionary(Long sourceLanguageId, Long targetLanguageId) {
         return translateDao.findAllPairsByDictionary(sourceLanguageId, targetLanguageId);
     }
-
 
     public List<String> findPairDictionaryByKey(Long sourceLanguage, Long targetLanguage, String key) {
 
@@ -77,8 +74,12 @@ public class DictionaryService {
     public List<String> deletePairByKey(Long sourceLanguage, Long targetLanguage, String key) {
 
         List<String> answer = new ArrayList<>();
-        translateDao.deletePair(sourceLanguage, targetLanguage, key);
-        answer.add(SUCCESSFUL_REMOVAL);
+        if(translateDao.deletePair(sourceLanguage, targetLanguage, key)) {
+            answer.add(SUCCESSFUL_REMOVAL);
+        }
+        else {
+            answer.add(NOT_PAIR);
+        }
         return answer;
     }
 
@@ -89,13 +90,15 @@ public class DictionaryService {
         List<String> answer;
         Validator pairValidator = new ValidatorDictionary(rules.get(0), rules.get(1));
         ValidationResult validationResult = pairValidator.checkAdd(key, value);
+
         answer = validationResult.getErrorsValidation();
 
         if (validationResult.isValid()) {
-            translateDao.addPair(wordDao.addPairWords(sourceLanguage, targetLanguage, key, value));
-            answer.add(SUCCESSFULLY_ADDED);
+            answer = translateDao.addPair(wordDao.addPairWords(sourceLanguage, targetLanguage, key, value));
+            if(answer.isEmpty()){
+                answer.add(SUCCESSFULLY_ADDED);
+            }
         }
-
         return answer;
     }
 }

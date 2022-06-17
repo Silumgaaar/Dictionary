@@ -1,10 +1,10 @@
 package ru.yarkin.models.database;
 
-
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
 import org.hibernate.Hibernate;
 
 import javax.persistence.Column;
@@ -24,6 +24,7 @@ import java.util.Objects;
 @Entity
 @Table
 public class Word {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

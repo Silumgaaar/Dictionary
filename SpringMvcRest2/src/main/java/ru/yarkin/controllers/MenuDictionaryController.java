@@ -32,46 +32,6 @@ public class MenuDictionaryController {
         return "menu/dictionary";
     }
 
-    @GetMapping("/add")
-    public String add(@RequestParam("sourceLanguage") Long sourceLanguageId,
-                      @RequestParam("targetLanguage") Long targetLanguageId, Model model) {
-        model.addAttribute("sourceLanguage", sourceLanguageId);
-        model.addAttribute("targetLanguage", targetLanguageId);
-        model.addAttribute("form", new FormAdd());
-
-        return "menu/command/add";
-    }
-
-    @PostMapping("/add")
-    public String addPair(@ModelAttribute FormAdd formAdd, Model model) {
-
-        model.addAttribute("sourceLanguage", formAdd.getSourceLanguage());
-        model.addAttribute("targetLanguage", formAdd.getTargetLanguage());
-        model.addAttribute("result", menuDictionaryService.addPair(formAdd.getSourceLanguage(), formAdd.getTargetLanguage(), formAdd.getKey(), formAdd.getValue()));
-        model.addAttribute("form", formAdd);
-
-        return "menu/command/add";
-    }
-
-    @GetMapping("/delete")
-    public String delete(@RequestParam("sourceLanguage") Long sourceLanguageId,
-                         @RequestParam("targetLanguage") Long targetLanguageId, Model model) {
-        model.addAttribute("sourceLanguage", sourceLanguageId);
-        model.addAttribute("targetLanguage", targetLanguageId);
-        model.addAttribute("form", new FormDelete());
-        return "menu/command/delete";
-    }
-
-    @PostMapping("/delete")
-    public String delete(@ModelAttribute FormDelete formDelete, Model model) {
-        model.addAttribute("sourceLanguage", formDelete.getSourceLanguage());
-        model.addAttribute("targetLanguage", formDelete.getTargetLanguage());
-        model.addAttribute("answer", menuDictionaryService.deletePairByKey(formDelete.getSourceLanguage(), formDelete.getTargetLanguage(), formDelete.getKey()));
-        model.addAttribute("form", formDelete);
-
-        return "menu/command/delete";
-    }
-
     @GetMapping("/view")
     public String view(@RequestParam("sourceLanguage") Long sourceLanguageId,
                        @RequestParam("targetLanguage") Long targetLanguageId, Model model) {
@@ -97,5 +57,45 @@ public class MenuDictionaryController {
         model.addAttribute("form", formSearch);
         model.addAttribute("result", menuDictionaryService.findPairDictionaryByKey(formSearch.getSourceLanguage(), formSearch.getTargetLanguage(), formSearch.getKey()));
         return "menu/command/search";
+    }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("sourceLanguage") Long sourceLanguageId,
+                         @RequestParam("targetLanguage") Long targetLanguageId, Model model) {
+        model.addAttribute("sourceLanguage", sourceLanguageId);
+        model.addAttribute("targetLanguage", targetLanguageId);
+        model.addAttribute("form", new FormDelete());
+        return "menu/command/delete";
+    }
+
+    @GetMapping("/add")
+    public String add(@RequestParam("sourceLanguage") Long sourceLanguageId,
+                      @RequestParam("targetLanguage") Long targetLanguageId, Model model) {
+        model.addAttribute("sourceLanguage", sourceLanguageId);
+        model.addAttribute("targetLanguage", targetLanguageId);
+        model.addAttribute("form", new FormAdd());
+
+        return "menu/command/add";
+    }
+
+    @PostMapping("/delete")
+    public String delete(@ModelAttribute FormDelete formDelete, Model model) {
+        model.addAttribute("sourceLanguage", formDelete.getSourceLanguage());
+        model.addAttribute("targetLanguage", formDelete.getTargetLanguage());
+        model.addAttribute("answer", menuDictionaryService.deletePairByKey(formDelete.getSourceLanguage(), formDelete.getTargetLanguage(), formDelete.getKey()));
+        model.addAttribute("form", formDelete);
+
+        return "menu/command/delete";
+    }
+
+    @PostMapping("/add")
+    public String addPair(@ModelAttribute FormAdd formAdd, Model model) {
+
+        model.addAttribute("sourceLanguage", formAdd.getSourceLanguage());
+        model.addAttribute("targetLanguage", formAdd.getTargetLanguage());
+        model.addAttribute("result", menuDictionaryService.addPair(formAdd.getSourceLanguage(), formAdd.getTargetLanguage(), formAdd.getKey(), formAdd.getValue()));
+        model.addAttribute("form", formAdd);
+
+        return "menu/command/add";
     }
 }

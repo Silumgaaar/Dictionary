@@ -1,6 +1,5 @@
 package ru.yarkin.dao;
 
-
 import com.google.common.base.Preconditions;
 
 import org.hibernate.Session;
@@ -51,7 +50,6 @@ public abstract class AbstractHibernateDao<T> {
         Preconditions.checkState(entity != null);
         delete(entity);
     }
-
 
     protected Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
