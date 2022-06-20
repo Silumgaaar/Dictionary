@@ -15,12 +15,14 @@ import ru.yarkin.service.validators.ValidatorDictionary;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Service
 @Transactional
 public class DictionaryService {
     private static final String SUCCESSFULLY_ADDED = "Пара успешно добавлена";
     private static final String NOT_PAIR = "Пара не найдена";
     private static final String SUCCESSFUL_REMOVAL = "Пара успешно удалена";
+    private static final String INCORRECT_ID = "incorrect id";
 
     private final WordDao wordDao;
     private final TranslateDao translateDao;
@@ -52,53 +54,91 @@ public class DictionaryService {
                 dictionaries.add(dictionary);
             }
         }
+
         return dictionaries;
     }
 
-    public List<String> findAllPairsDictionary(Long sourceLanguageId, Long targetLanguageId) {
-        return translateDao.findAllPairsByDictionary(sourceLanguageId, targetLanguageId);
-    }
-
-    public List<String> findPairDictionaryByKey(Long sourceLanguage, Long targetLanguage, String key) {
-
-        List<String> answer;
-        answer = translateDao.findPairByKey(sourceLanguage, targetLanguage, key);
-
-        if (answer.isEmpty()) {
-            answer.add(NOT_PAIR);
+    public List<String> findAllPairsDictionary(Dictionary dictionary) {
+        if (dictionary.getError() == null) {
+            return translateDao.findAllPairsByDictionary(dictionary.getSourceLanguageId(), dictionary.getTargetLanguageId());
+        } else {
+            List<String> answer = new ArrayList<>();
+            answer.add(dictionary.getError());
+            return answer;
         }
-
-        return answer;
     }
 
-    public List<String> deletePairByKey(Long sourceLanguage, Long targetLanguage, String key) {
+    public List<String> findPairDictionaryByKey(Dictionary dictionary, String key) {
+        if (dictionary.getError() == null) {
+            List<String> answer;
+            answer = translateDao.findPairByKey(dictionary.getSourceLanguageId(), dictionary.getTargetLanguageId(), key);
 
+            if (answer.isEmpty()) {
+                answer.add(NOT_PAIR);
+            }
+            return answer;
+        } else {
+            List<String> answer = new ArrayList<>();
+            answer.add(dictionary.getError());
+            return answer;
+        }
+    }
+
+    public List<String> deletePairByKey(Dictionary dictionary, String key) {
         List<String> answer = new ArrayList<>();
-        if(translateDao.deletePair(sourceLanguage, targetLanguage, key)) {
-            answer.add(SUCCESSFUL_REMOVAL);
-        }
-        else {
-            answer.add(NOT_PAIR);
+        if (dictionary.getError() == null) {
+            if (translateDao.deletePair(dictionary.getSourceLanguageId(), dictionary.getTargetLanguageId(), key)) {
+                answer.add(SUCCESSFUL_REMOVAL);
+            } else {
+                answer.add(NOT_PAIR);
+            }
+        } else {
+            answer.add(dictionary.getError());
         }
         return answer;
     }
 
-    public List<String> addPair(Long sourceLanguage, Long targetLanguage, String key, String value) {
+    public List<String> addPair(Dictionary dictionary, String key, String value) {
 
-        List<String> rules = languageDao.findRulesDictionary(sourceLanguage, targetLanguage);
 
-        List<String> answer;
-        Validator pairValidator = new ValidatorDictionary(rules.get(0), rules.get(1));
-        ValidationResult validationResult = pairValidator.checkAdd(key, value);
+        if (dictionary.getError() == null) {
+            List<String> answer;
 
-        answer = validationResult.getErrorsValidation();
+            List<String> rules = languageDao.findRulesDictionary(dictionary.getSourceLanguageId(), dictionary.getTargetLanguageId());
 
-        if (validationResult.isValid()) {
-            answer = translateDao.addPair(wordDao.addPairWords(sourceLanguage, targetLanguage, key, value));
-            if(answer.isEmpty()){
-                answer.add(SUCCESSFULLY_ADDED);
+            Validator pairValidator = new ValidatorDictionary(rules.get(0), rules.get(1));
+            ValidationResult validationResult = pairValidator.checkAdd(key, value);
+
+            answer = validationResult.getErrorsValidation();
+
+            if (validationResult.isValid()) {
+                answer = translateDao.addPair(wordDao.addPairWords(dictionary.getSourceLanguageId(), dictionary.getTargetLanguageId(), key, value));
+                if (answer.isEmpty()) {
+                    answer.add(SUCCESSFULLY_ADDED);
+                }
+            }
+            return answer;
+        } else {
+            List<String> answer = new ArrayList<>();
+            answer.add(dictionary.getError());
+            return answer;
+        }
+    }
+
+
+    public void findDictionaryById(String idDictionary, Dictionary dictionary) {
+        String[] id = idDictionary.split("-");
+        if (id.length != 2) {
+            dictionary.setError(INCORRECT_ID);
+        } else {
+            dictionary.setSourceLanguageId(Long.parseLong(id[0], 10));
+            dictionary.setTargetLanguageId(Long.parseLong(id[1], 10));
+            try {
+                languageDao.findNameDictionaryById(dictionary);
+                dictionary.setError(null);
+            } catch (IndexOutOfBoundsException e) {
+                dictionary.setError(INCORRECT_ID);
             }
         }
-        return answer;
     }
 }

@@ -6,7 +6,9 @@
 </head>
 <body>
 <div th:each="menu : ${nameDictionary}">
-    <a th:href="@{/dictionary(sourceLanguage = ${menu.getSourceLanguageId()}, targetLanguage = ${menu.getTargetLanguageId()})}" th:text="${menu.getSourceLanguage() + menu.getTargetLanguage()}">Dictionary</a>
+    <a th:href="@{/dictionary(sourceLanguage = ${menu.getSourceLanguageId()}, targetLanguage = ${menu.getTargetLanguageId()})}"
+       th:text="${menu.getSourceLanguage()} + ${menu.getTargetLanguage()}">Dictionary
+    </a>
 </div>
 
 </body>

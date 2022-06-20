@@ -7,6 +7,9 @@ import ru.yarkin.dictionary.Pair;
 import ru.yarkin.models.database.Language;
 import ru.yarkin.models.database.Word;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Repository
 public class WordDao extends AbstractHibernateDao<Word> {
@@ -47,6 +50,19 @@ public class WordDao extends AbstractHibernateDao<Word> {
         return getCurrentSession().createQuery("from Word  where value =: name", Word.class)
                 .setParameter("name", name)
                 .getSingleResult();
+    }
+
+    public List<String> getAllByLanguageId(Long id){
+        List<Word> words = getCurrentSession().createQuery("from Word where language.id =: id", Word.class)
+                .setParameter("id", id)
+                .getResultList();
+
+        List<String> result = new ArrayList<>();
+
+        for (Word word : words){
+            result.add(word.getValue());
+        }
+        return result;
     }
 
     private boolean unique(String key, Language language) {

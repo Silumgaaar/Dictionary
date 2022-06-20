@@ -6,7 +6,7 @@
     <title>Dictionary Menu</title>
 </head>
 <body>
-<a th:href="@{/dictionary(sourceLanguage = ${sourceLanguage}, targetLanguage = ${targetLanguage})}">Вернутся в меню словаря</a><br/>
+<a th:href="@{/dictionary(sourceLanguage = ${dictionary.getSourceLanguageId()}, targetLanguage = ${dictionary.getTargetLanguageId()})}">Вернутся в меню словаря</a><br/>
 
 <table>
     <colgroup>
