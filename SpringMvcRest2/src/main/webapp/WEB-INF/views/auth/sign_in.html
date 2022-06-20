@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru" xml:lang="ru">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Login</title>
+</head>
+<body>
+    <form action="/MVC-spring/login/process" method="post">
+        <div>
+            Name: <input name="name" type="text">
+        </div>
+        <div>
+            Password: <input name="password" type="password">
+        </div>
+        <input type="submit">
+    </form>
+
+    <a href="/MVC-spring/sign_up">Регистрация</a>
+
+    <p>Комментарий<Br>
+
+    <form>
+        <label>
+                <div>
+                <textarea class="form-control input-sm" rows="2" th:text="${error}"></textarea>
+                </div>
+        </label>
+    </form>
+
+</body>
+</html>

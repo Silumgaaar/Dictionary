@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Title</title>
+</head>
+<body>
+<h1>Удаление записи</h1>
+<form action="#" th:action="@{/dictionary/admin/delete}" th:object="${form}" method="post" accept-charset="UTF-8">
+    <input name="sourceLanguage" type="hidden" th:valuetype="Long" th:value="${sourceLanguage}">
+    <input name="targetLanguage" type="hidden" th:valuetype="Long" th:value="${targetLanguage}">
+
+    <p>Ключ:<input type="text" th:field="*{key}"/></p>
+
+    <button>Удалить</button>
+
+</form>
+
+<a th:href="@{/dictionary(sourceLanguage = ${sourceLanguage}, targetLanguage = ${targetLanguage})}">Вернутся в меню словаря</a><br/>
+<p>Комментарий<Br>
+
+<form>
+    <label>
+        <div th:each="answer : ${answer}">
+            <textarea class="form-control input-sm" rows="2" th:text="${answer}"></textarea>
+        </div>
+    </label>
+</form>
+</body>
+</html>
