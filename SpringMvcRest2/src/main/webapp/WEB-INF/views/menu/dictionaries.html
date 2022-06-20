@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru" xml:lang="ru">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Start menu</title>
+</head>
+<body>
+<div th:each="menu : ${nameDictionary}">
+    <a th:href="@{/dictionary(sourceLanguage = ${menu.getSourceLanguageId()}, targetLanguage = ${menu.getTargetLanguageId()})}" th:text="${menu.getSourceLanguage() + menu.getTargetLanguage()}">Dictionary</a>
+</div>
+
+<a href="/MVC-spring/logout">Logout</a>
+
+</body>
+</html>

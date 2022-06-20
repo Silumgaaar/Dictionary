@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="ru">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <title>SignUp</title>
+</head>
+<body>
+<form action="#" th:action="@{/sign_up}" th:object="${user}" method="post" accept-charset="UTF-8">
+    <label>
+        <div>
+            Name: <input type="text" th:field="*{name}"/>
+        </div>
+    </label>
+
+    <label>
+        <div>
+            Email: <input type="email" th:field="*{email}"/>
+        </div>
+    </label>
+
+    <label>
+        <div>
+            Password: <input type="password" th:field="*{password}"/>
+        </div>
+    </label>
+
+    <label>
+        <div>
+            Repeat password: <input type="password" th:field="*{confirmPassword}"/>
+        </div>
+    </label>
+    <input type="submit">
+</form>
+
+<p>Комментарий<Br>
+
+<form>
+    <label>
+        <div th:each="error : ${errors}">
+
+            <tr>
+                <td>
+                    <div th:text="${error.code}"></div>
+                </td>
+            </tr>
+        </div>
+<!--        <div>-->
+<!--            <textarea class="form-control input-sm" rows="2" th:text="${error}"></textarea>-->
+<!--        </div>-->
+    </label>
+</form>
+
+
+
+</body>
+</html>
