@@ -6,20 +6,26 @@
     <title>Dictionary Menu</title>
 </head>
 <body>
-<a th:href="@{/dictionary(sourceLanguage = ${dictionary.getSourceLanguageId()}, targetLanguage = ${dictionary.getTargetLanguageId()})}">Вернутся в меню словаря</a><br/>
+<a th:href="@{/dictionary(sourceLanguage = ${dictionary.getSourceLanguageId()}, targetLanguage = ${dictionary.getTargetLanguageId()})}">Вернутся
+    в меню словаря</a><br/>
 
 <table>
     <colgroup>
-        <col span="1" style="background-color:LightCyan">
+        <col span="1" style="background:Khaki">
+        <col style="background-color:LightCyan">
     </colgroup>
     <tr>
-        <th>Key -- Value</th>
+        <th>Key</th>
+        <th>Value</th>
     </tr>
-    <div th:each="menu : ${menus}">
+    <div th:each="pair : ${pairs}">
 
         <tr>
             <td>
-                <div th:text="${menu}"></div>
+                <div th:text="${pair.getSourceWord().getValue()}"></div>
+            </td>
+            <td>
+                <div th:text="${pair.getTargetWord().getValue()}"></div>
             </td>
         </tr>
     </div>

@@ -1,74 +1,49 @@
 package ru.yarkin.dao.word;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import ru.yarkin.dao.AbstractHibernateDao;
-import ru.yarkin.dictionary.Pair;
 import ru.yarkin.models.database.Language;
 import ru.yarkin.models.database.Word;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Repository
 public class WordDao extends AbstractHibernateDao<Word> {
-
+    @Autowired
     public WordDao() {
         setClazz(Word.class);
     }
 
-    public Pair addPairWords(Long sourceLanguage, Long targetLanguage, String key, String value) {
-        Language languageSourceWord = getCurrentSession().createQuery("from Language where id=: sourceLanguageId", Language.class)
-                .setParameter("sourceLanguageId", sourceLanguage)
-                .getSingleResult();
-        Language languageTargetWord = getCurrentSession().createQuery("from Language where id=: targetLanguageId", Language.class)
-                .setParameter("targetLanguageId", targetLanguage)
-                .getSingleResult();
 
-        Pair pair = new Pair();
-        if (unique(key, languageSourceWord)) {
-            Word sourceWord = new Word(key, languageSourceWord);
-            pair.setSourceWord(sourceWord);
-            create(sourceWord);
-        } else {
-            pair.setSourceWord(getOneByName(key));
-        }
-
-        if (unique(value, languageTargetWord)) {
-            Word targetWord = new Word(value, languageTargetWord);
-            pair.setTargetWord(targetWord);
-            create(targetWord);
-        } else{
-            pair.setTargetWord(getOneByName(value));
-        }
-
-        return pair;
-    }
-
-    public Word getOneByName(String name) {
-        return getCurrentSession().createQuery("from Word  where value =: name", Word.class)
-                .setParameter("name", name)
-                .getSingleResult();
-    }
-
-    public List<String> getAllByLanguageId(Long id){
-        List<Word> words = getCurrentSession().createQuery("from Word where language.id =: id", Word.class)
-                .setParameter("id", id)
-                .getResultList();
-
-        List<String> result = new ArrayList<>();
+    public Map<String, Long> getAllValueAndLanguageWord(){
+        List<Word> words = findAll();
+        Map<String, Long> valueAndLanguageWords = new HashMap<>();
 
         for (Word word : words){
-            result.add(word.getValue());
+            valueAndLanguageWords.put(word.getValue(), word.getLanguage().getId());
         }
-        return result;
+
+        return valueAndLanguageWords;
     }
 
-    private boolean unique(String key, Language language) {
-        return getCurrentSession().createQuery("from Word where value =: key and language =: language")
-                .setParameter("key", key)
-                .setParameter("language", language)
-                .uniqueResult() == null;
+    public Word createWord(String value, Long idLanguage){
+        Language language = getCurrentSession().createQuery("from Language where id =: idLanguage", Language.class)
+                .setParameter("idLanguage", idLanguage)
+                .getSingleResult();
+
+        return new Word(value, language);
+
+    }
+
+    public Word findWordByValueAndIdLanguage(String value, Long idLanguage){
+        return getCurrentSession().createQuery("from Word where value =: value and language.id =: idLanguage", Word.class)
+                .setParameter("value", value)
+                .setParameter("idLanguage", idLanguage)
+                .getSingleResult();
     }
 }

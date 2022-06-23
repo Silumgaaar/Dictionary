@@ -32,17 +32,4 @@ public class Language {
 
     @Column(name = "rule_language")
     private String rule;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Language language = (Language) o;
-        return id != null && Objects.equals(id, language.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
 }

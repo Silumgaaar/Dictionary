@@ -11,10 +11,5 @@ public class Dictionary {
 
     private String sourceLanguage;
     private String targetLanguage;
-
     private String error;
-
-    public String getName(){
-        return sourceLanguage + "--" + targetLanguage;
-    }
 }

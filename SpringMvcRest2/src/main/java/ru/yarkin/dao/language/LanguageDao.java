@@ -29,7 +29,8 @@ public class LanguageDao extends AbstractHibernateDao<Language> {
 
         return rules;
     }
-    public Dictionary findNameDictionaryById(Dictionary dictionary) throws IndexOutOfBoundsException {
+
+    public void findNameDictionaryById(Dictionary dictionary) throws IndexOutOfBoundsException {
         List<Language> language = getCurrentSession().createQuery("from Language where id =: sourceLanguage or id =: targetLanguage", Language.class)
                 .setParameter("sourceLanguage", dictionary.getSourceLanguageId())
                 .setParameter("targetLanguage", dictionary.getTargetLanguageId())
@@ -37,6 +38,25 @@ public class LanguageDao extends AbstractHibernateDao<Language> {
 
         dictionary.setSourceLanguage(language.get(0).getLanguage());
         dictionary.setTargetLanguage(language.get(1).getLanguage());
-        return dictionary;
+    }
+
+    public List<Long> findAllIdLanguage() {
+        List<Language> languages = findAll();
+
+        List<Long> idLanguages = new ArrayList<>();
+        for (Language language : languages) {
+            idLanguages.add(language.getId());
+        }
+        return idLanguages;
+    }
+
+    public List<String> findAllNameLanguage() {
+        List<Language> languages = findAll();
+
+        List<String> nameLanguages = new ArrayList<>();
+        for (Language language : languages) {
+            nameLanguages.add(language.getLanguage());
+        }
+        return nameLanguages;
     }
 }

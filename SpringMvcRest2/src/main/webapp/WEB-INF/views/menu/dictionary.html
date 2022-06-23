@@ -8,10 +8,14 @@
 <body>
 
 <h2>Command:</h2>
-<a th:href="@{/dictionary/add(sourceLanguage = ${dictionary.getSourceLanguageId()}, targetLanguage = ${dictionary.getTargetLanguageId()})}" th:text="Add">Dictionary</a><br/>
-<a th:href="@{/dictionary/delete(sourceLanguage = ${dictionary.getSourceLanguageId()}, targetLanguage = ${dictionary.getTargetLanguageId()})}" th:text="Delete">Dictionary</a><br/>
-<a th:href="@{/dictionary/view(sourceLanguage = ${dictionary.getSourceLanguageId()}, targetLanguage = ${dictionary.getTargetLanguageId()})}" th:text="View">Dictionary</a><br/>
-<a th:href="@{/dictionary/search(sourceLanguage = ${dictionary.getSourceLanguageId()}, targetLanguage = ${dictionary.getTargetLanguageId()})}" th:text="Search">Dictionary</a><br/>
+<a th:href="@{/dictionary/add(sourceLanguage = ${dictionary.getSourceLanguageId()}, targetLanguage = ${dictionary.getTargetLanguageId()})}"
+   th:text="Add">Dictionary</a><br/>
+<a th:href="@{/dictionary/delete(sourceLanguage = ${dictionary.getSourceLanguageId()}, targetLanguage = ${dictionary.getTargetLanguageId()})}"
+   th:text="Delete">Dictionary</a><br/>
+<a th:href="@{/dictionary/view(sourceLanguage = ${dictionary.getSourceLanguageId()}, targetLanguage = ${dictionary.getTargetLanguageId()})}"
+   th:text="View">Dictionary</a><br/>
+<a th:href="@{/dictionary/search(sourceLanguage = ${dictionary.getSourceLanguageId()}, targetLanguage = ${dictionary.getTargetLanguageId()})}"
+   th:text="Search">Dictionary</a><br/>
 <a href="/MVC-spring/start/menu">Вернутся в меню словарей</a><br/>
 
 </body>

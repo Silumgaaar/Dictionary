@@ -40,17 +40,4 @@ public class Translate {
         this.sourceWord = sourceWord;
         this.targetWord = targetWord;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Translate translate = (Translate) o;
-        return id != null && Objects.equals(id, translate.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
 }

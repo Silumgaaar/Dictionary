@@ -18,41 +18,39 @@ import ru.yarkin.service.DictionaryService;
 @Controller
 @RequestMapping("/dictionary")
 public class MenuDictionaryController {
+
     private final DictionaryService dictionaryService;
-    private final Dictionary dictionary;
+
 
     @Autowired
-    public MenuDictionaryController(DictionaryService dictionaryService, Dictionary dictionary) {
+    public MenuDictionaryController(DictionaryService dictionaryService) {
         this.dictionaryService = dictionaryService;
-        this.dictionary = dictionary;
     }
 
     @GetMapping("")
     public String startMenu(@RequestParam("sourceLanguage") Long sourceLanguageId, @RequestParam("targetLanguage") Long targetLanguageId, Model model) {
-        dictionaryService.findDictionaryById(sourceLanguageId + "-" + targetLanguageId, dictionary);
-        model.addAttribute("dictionary", dictionary);
+        model.addAttribute("dictionary", dictionaryService.findDictionaryById(sourceLanguageId + "-" + targetLanguageId));
         return "menu/dictionary";
     }
 
     @GetMapping("/view")
     public String view(@RequestParam("sourceLanguage") Long sourceLanguageId, @RequestParam("targetLanguage") Long targetLanguageId, Model model) {
-        dictionaryService.findDictionaryById(sourceLanguageId + "-" + targetLanguageId, dictionary);
+        Dictionary dictionary = dictionaryService.findDictionaryById(sourceLanguageId + "-" + targetLanguageId);
         model.addAttribute("dictionary", dictionary);
-        model.addAttribute("menus", dictionaryService.findAllPairsDictionary(dictionary));
+        model.addAttribute("pairs", dictionaryService.findAllPairsDictionary(dictionary));
         return "menu/command/view";
     }
 
     @GetMapping("/search")
     public String search(@RequestParam("sourceLanguage") Long sourceLanguageId, @RequestParam("targetLanguage") Long targetLanguageId, Model model) {
-        dictionaryService.findDictionaryById(sourceLanguageId + "-" + targetLanguageId, dictionary);
-        model.addAttribute("dictionary", dictionary);
+        model.addAttribute("dictionary", dictionaryService.findDictionaryById(sourceLanguageId + "-" + targetLanguageId));
         model.addAttribute("form", new FormSearch());
         return "menu/command/search";
     }
 
     @GetMapping("/search/result")
     public String search(@ModelAttribute FormSearch formSearch, Model model) {
-        dictionaryService.findDictionaryById(formSearch.getSourceLanguage() + "-" + formSearch.getTargetLanguage(), dictionary);
+        Dictionary dictionary = dictionaryService.findDictionaryById(formSearch.getSourceLanguage() + "-" + formSearch.getTargetLanguage());
         model.addAttribute("form", formSearch);
         model.addAttribute("dictionary", dictionary);
         model.addAttribute("result", dictionaryService.findPairDictionaryByKey(dictionary, formSearch.getKey()));
@@ -61,15 +59,14 @@ public class MenuDictionaryController {
 
     @GetMapping("/delete")
     public String delete(@RequestParam("sourceLanguage") Long sourceLanguageId, @RequestParam("targetLanguage") Long targetLanguageId, Model model) {
-        dictionaryService.findDictionaryById(sourceLanguageId + "-" + targetLanguageId, dictionary);
-        model.addAttribute("dictionary", dictionary);
+        model.addAttribute("dictionary", dictionaryService.findDictionaryById(sourceLanguageId + "-" + targetLanguageId));
         model.addAttribute("form", new FormDelete());
         return "menu/command/delete";
     }
 
     @GetMapping("/add")
     public String add(@RequestParam("sourceLanguage") Long sourceLanguageId, @RequestParam("targetLanguage") Long targetLanguageId, Model model) {
-        model.addAttribute("dictionary", dictionary);
+        model.addAttribute("dictionary", dictionaryService.findDictionaryById(sourceLanguageId + "-" + targetLanguageId));
         model.addAttribute("sourceLanguage", sourceLanguageId);
         model.addAttribute("targetLanguage", targetLanguageId);
         model.addAttribute("form", new FormAdd());
@@ -78,7 +75,7 @@ public class MenuDictionaryController {
 
     @PostMapping("/delete")
     public String delete(@ModelAttribute FormDelete formDelete, Model model) {
-        dictionaryService.findDictionaryById(formDelete.getSourceLanguage() + "-" + formDelete.getTargetLanguage(), dictionary);
+        Dictionary dictionary = dictionaryService.findDictionaryById(formDelete.getSourceLanguage() + "-" + formDelete.getTargetLanguage());
         model.addAttribute("dictionary", dictionary);
         model.addAttribute("answer", dictionaryService.deletePairByKey(dictionary, formDelete.getKey()));
         model.addAttribute("form", formDelete);
@@ -87,7 +84,7 @@ public class MenuDictionaryController {
 
     @PostMapping("/add")
     public String addPair(@ModelAttribute FormAdd formAdd, Model model) {
-        dictionaryService.findDictionaryById(formAdd.getSourceLanguage() + "-" + formAdd.getTargetLanguage(), dictionary);
+        Dictionary dictionary = dictionaryService.findDictionaryById(formAdd.getSourceLanguage() + "-" + formAdd.getTargetLanguage());
         model.addAttribute("result", dictionaryService.addPair(dictionary, formAdd.getKey(), formAdd.getValue()));
         model.addAttribute("dictionary", dictionary);
         model.addAttribute("form", formAdd);

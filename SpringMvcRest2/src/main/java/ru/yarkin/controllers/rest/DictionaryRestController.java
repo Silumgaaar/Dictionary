@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ru.yarkin.dictionary.Dictionary;
+import ru.yarkin.dictionary.Pair;
 import ru.yarkin.models.form.FormAdd;
 import ru.yarkin.models.form.FormDelete;
 import ru.yarkin.models.form.FormSearch;
@@ -24,12 +25,10 @@ import java.util.List;
 public class DictionaryRestController {
 
     private final DictionaryService dictionaryService;
-    private final Dictionary dictionary;
 
     @Autowired
-    public DictionaryRestController(DictionaryService dictionaryService, Dictionary dictionary) {
+    public DictionaryRestController(DictionaryService dictionaryService) {
         this.dictionaryService = dictionaryService;
-        this.dictionary = dictionary;
     }
 
     @GetMapping
@@ -39,31 +38,26 @@ public class DictionaryRestController {
 
     @GetMapping(value = "/{idDictionary}")
     public Dictionary findAllWordsByLanguageId(@PathVariable("idDictionary") String idDictionary) {
-        dictionaryService.findDictionaryById(idDictionary, dictionary);
-        return dictionary;
+        return dictionaryService.findDictionaryById(idDictionary);
     }
 
     @GetMapping(value = "/{idDictionary}/word")
-    public List<String> findAllWordsById(@PathVariable("idDictionary") String idDictionary) {
-        dictionaryService.findDictionaryById(idDictionary, dictionary);
-        return dictionaryService.findAllPairsDictionary(dictionary);
+    public List<Pair> findAllWordsById(@PathVariable("idDictionary") String idDictionary) {
+        return dictionaryService.findAllPairsDictionary(dictionaryService.findDictionaryById(idDictionary));
     }
     @PutMapping(value = "/{idDictionary}/word")
-    public List<String> findWord(@PathVariable("idDictionary") String idDictionary, @RequestBody FormSearch formSearch) {
-        dictionaryService.findDictionaryById(idDictionary, dictionary);
-        return dictionaryService.findPairDictionaryByKey(dictionary, formSearch.getKey());
+    public List<Pair> findWord(@PathVariable("idDictionary") String idDictionary, @RequestBody FormSearch formSearch) {
+        return dictionaryService.findPairDictionaryByKey(dictionaryService.findDictionaryById(idDictionary), formSearch.getKey());
     }
 
     @PostMapping(value = "/{idDictionary}/word")
     public List<String> createPair(@RequestBody FormAdd formAdd, @PathVariable("idDictionary") String idDictionary) {
-        dictionaryService.findDictionaryById(idDictionary, dictionary);
-        return dictionaryService.addPair(dictionary, formAdd.getKey(), formAdd.getValue());
+        return dictionaryService.addPair(dictionaryService.findDictionaryById(idDictionary), formAdd.getKey(), formAdd.getValue());
     }
 
     @DeleteMapping(value = "/{idDictionary}/word")
     public List<String> deletePair(@RequestBody FormDelete formDelete, @PathVariable("idDictionary") String idDictionary) {
-        dictionaryService.findDictionaryById(idDictionary, dictionary);
-        return dictionaryService.deletePairByKey(dictionary, formDelete.getKey());
+        return dictionaryService.deletePairByKey(dictionaryService.findDictionaryById(idDictionary), formDelete.getKey());
     }
 
 

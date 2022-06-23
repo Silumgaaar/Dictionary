@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Repository
@@ -21,8 +22,8 @@ public abstract class AbstractHibernateDao<T> {
         clazz = Preconditions.checkNotNull(clazzToSet);
     }
 
-    public T findOne(final Long id) {
-        return (T) getCurrentSession().get(clazz, id);
+    public <E> T findOne(final E id) {
+        return (T) getCurrentSession().get(clazz, (Serializable) id);
     }
 
     public List<T> findAll() {
@@ -31,7 +32,7 @@ public abstract class AbstractHibernateDao<T> {
 
     public T create(final T entity) {
         Preconditions.checkNotNull(entity);
-        getCurrentSession().saveOrUpdate(entity);
+        getCurrentSession().save(entity);
         return entity;
     }
 
