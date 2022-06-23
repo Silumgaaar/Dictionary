@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ru.yarkin.dao.language.LanguageDao;
-import ru.yarkin.dao.translate.TranslateDao;
-import ru.yarkin.dao.word.WordDao;
+import ru.yarkin.dao.dictionarydao.LanguageDao;
+import ru.yarkin.dao.dictionarydao.TranslateDao;
+import ru.yarkin.dao.dictionarydao.WordDao;
 import ru.yarkin.dictionary.Dictionary;
 import ru.yarkin.dictionary.Pair;
 import ru.yarkin.service.validators.ValidationResult;

@@ -1,4 +1,4 @@
-package ru.yarkin.dao.word;
+package ru.yarkin.dao.dictionarydao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

@@ -1,4 +1,4 @@
-package ru.yarkin.dao.translate;
+package ru.yarkin.dao.dictionarydao;
 
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;

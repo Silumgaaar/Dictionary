@@ -1,4 +1,4 @@
-package ru.yarkin.dao.language;
+package ru.yarkin.dao.dictionarydao;
 
 import org.springframework.stereotype.Repository;
 
