@@ -20,18 +20,18 @@ public class WordDao extends AbstractHibernateDao<Word> {
     }
 
 
-    public Map<String, Long> getAllValueAndLanguageWord(){
+    public Map<String, Long> getAllValueAndLanguageWord() {
         List<Word> words = findAll();
         Map<String, Long> valueAndLanguageWords = new HashMap<>();
 
-        for (Word word : words){
+        for (Word word : words) {
             valueAndLanguageWords.put(word.getValue(), word.getLanguage().getId());
         }
 
         return valueAndLanguageWords;
     }
 
-    public Word createWord(String value, Long idLanguage){
+    public Word createWord(String value, Long idLanguage) {
         Language language = getCurrentSession().createQuery("from Language where id =: idLanguage", Language.class)
                 .setParameter("idLanguage", idLanguage)
                 .getSingleResult();
@@ -40,7 +40,7 @@ public class WordDao extends AbstractHibernateDao<Word> {
 
     }
 
-    public Word findWordByValueAndIdLanguage(String value, Long idLanguage){
+    public Word findWordByValueAndIdLanguage(String value, Long idLanguage) {
         return getCurrentSession().createQuery("from Word where value =: value and language.id =: idLanguage", Word.class)
                 .setParameter("value", value)
                 .setParameter("idLanguage", idLanguage)

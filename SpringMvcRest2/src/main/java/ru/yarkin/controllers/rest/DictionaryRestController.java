@@ -45,6 +45,7 @@ public class DictionaryRestController {
     public List<Pair> findAllWordsById(@PathVariable("idDictionary") String idDictionary) {
         return dictionaryService.findAllPairsDictionary(dictionaryService.findDictionaryById(idDictionary));
     }
+
     @PutMapping(value = "/{idDictionary}/word")
     public List<Pair> findWord(@PathVariable("idDictionary") String idDictionary, @RequestBody FormSearch formSearch) {
         return dictionaryService.findPairDictionaryByKey(dictionaryService.findDictionaryById(idDictionary), formSearch.getKey());

@@ -46,7 +46,7 @@ public abstract class AbstractHibernateDao<T> {
         getCurrentSession().delete(entity);
     }
 
-    public void deleteById(final long entityId) {
+    public <E> void deleteById(final E entityId) {
         final T entity = findOne(entityId);
         Preconditions.checkState(entity != null);
         delete(entity);

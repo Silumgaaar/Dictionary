@@ -7,7 +7,6 @@ import ru.yarkin.dao.AbstractHibernateDao;
 import ru.yarkin.dictionary.Dictionary;
 import ru.yarkin.dictionary.Pair;
 import ru.yarkin.models.database.Translate;
-import ru.yarkin.models.database.Word;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,9 +70,6 @@ public class TranslateDao extends AbstractHibernateDao<Translate> {
     }
 
     public void createPair(Pair pair) {
-        Word sourceWord = pair.getSourceWord();
-        Word targetWord = pair.getTargetWord();
-        Translate translate = new Translate(sourceWord, targetWord);
-        create(translate);
+        create(new Translate(pair.getSourceWord(), pair.getTargetWord()));
     }
 }

@@ -153,7 +153,6 @@ public class DictionaryService {
                 dictionary.setError(INCORRECT_ID);
             }
         }
-
         return dictionary;
     }
 }
