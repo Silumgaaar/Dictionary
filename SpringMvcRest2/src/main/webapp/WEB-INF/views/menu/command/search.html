@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+</head>
+<body>
+<h1>Поиск записи</h1>
+<form action="#" th:action="@{/dictionary/search/result}" th:object="${form}" method="get" accept-charset="UTF-8">
+    <input name="sourceLanguage" type="hidden" th:valuetype="Long" th:value="${dictionary.getSourceLanguageId()}">
+    <input name="targetLanguage" type="hidden" th:valuetype="Long" th:value="${dictionary.getTargetLanguageId()}">
+
+    <p>Ключ:<input type="text" th:field="*{key}"/></p>
+
+    <button>Поиск</button>
+
+</form>
+
+<a th:href="@{/dictionary(sourceLanguage = ${dictionary.getSourceLanguageId()}, targetLanguage = ${dictionary.getTargetLanguageId()})}">Вернутся
+    в меню словаря</a><br/>
+
+<p>Комментарий<Br>
+
+<form>
+    <div th:each="answer : ${result}">
+        <label>
+            <textarea class="form-control input-sm" rows="2"
+                      th:text="${answer.getSourceWord().getValue() + '--' + answer.getTargetWord().getValue()}"></textarea>
+        </label>
+    </div>
+</form>
+</body>
+</html>
